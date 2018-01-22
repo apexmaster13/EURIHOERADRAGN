@@ -1,4 +1,4 @@
-import java.awt.*;
+ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.image.*;
@@ -38,59 +38,26 @@ public class Frogger extends JFrame implements ActionListener{
 }
 
 class GamePanel extends JPanel implements KeyListener{
-    private int frogx, frogy, dir;
     private boolean []keys;
     private boolean allowMove = true;
     private Image back, frog;
-
-    private Image bus, car, carR, logPic;
     private Frogger mainFrame;
+    private final int UP = 0;
+    private final int DOWN = 1;
+    private final int RIGHT = 2;
+    private final int LEFT = 3;
+    private Frog player = new Frog();
 
     public GamePanel(Frogger m){
         keys = new boolean[KeyEvent.KEY_LAST+1];
         back = new ImageIcon("background.png").getImage();
         back = back.getScaledInstance(460, 524, Image.SCALE_SMOOTH);
-
-        //public void changeSprite(Image img, String sprite, int x, int y){
-            //img = new ImageIcon(sprite).getImage();
-            //img = img.getScaledInstance(x, y, Image.SCALE_SMOOTH);
-        //}
-
-        //changeSprite(frog, "frog-u.png", 24, 18);
-
-        frog = new ImageIcon("frog-u.png").getImage();
+        frog = new ImageIcon("frog-V.png").getImage();
         frog = frog.getScaledInstance(24, 18, Image.SCALE_SMOOTH);
-
         mainFrame = m;
-        frogx = 298;
-        frogy = 460;
         setSize(466, 553);
         addKeyListener(this);
     }
-
-    public void createCars()
-	{
-		moveList = new LinkedList<MovingObject>();
-		busR = new ImageIcon("data/bus.png");
-		carR = new ImageIcon("data/car.png");
-		car2R = new ImageIcon("data/carR.png");
-
-		bus = new MovingObject();
-		bus.setPic(busR);
-		moveList.add(bus);
-
-		car = new MovingObject();
-		car.setPic(carR);
-		car.setSpeed(8, 0);
-		car.setXY(200, 200);
-		moveList.add(car);
-
-		car2 = new MovingObject();
-		car2.setPic(car2R);
-		car2.setSpeed(6, 0);
-		car2.setXY(200, 250);
-		moveList.add(car2);
-	}
 
     public void addNotify() {
         super.addNotify();
@@ -98,26 +65,47 @@ class GamePanel extends JPanel implements KeyListener{
         mainFrame.start();
     }
 
+    /*
+    public void changeSprite(Image img, String sprite, int x, int y){
+        img = new ImageIcon(sprite).getImage();
+        img = img.getScaledInstance(x, y, Image.SCALE_SMOOTH);
+    }
+    */
+
     public void move(){
         if(allowMove == true){
             //&& frogx+20 < 554 && frogx-20 > -1 && frogy+20 < 259 && frogy-20 > -1
-            if(keys[KeyEvent.VK_RIGHT] ){
-                frogx += 32;
+            if(keys[KeyEvent.VK_RIGHT]  && player.getX()!= 426){
+                player.moveX(32);
+                player.setDir(RIGHT);
+                //changeSprite(frog, "frog-H.png", 18, 24);
+                frog = new ImageIcon("frog-H.png").getImage();
+                frog = frog.getScaledInstance(18, 24, Image.SCALE_SMOOTH);
             }
-            if(keys[KeyEvent.VK_LEFT] ){
-                frogx -= 32;
+            if(keys[KeyEvent.VK_LEFT] && player.getX() != 10){
+                player.moveX(-32);
+                player.setDir(LEFT);
+                //changeSprite(frog, "frog-H.png", 18, 24);
+                frog = new ImageIcon("frog-H.png").getImage();
+                frog = frog.getScaledInstance(18, 24, Image.SCALE_SMOOTH);
             }
-            if(keys[KeyEvent.VK_UP] ){
-                frogy -= 32;
+            if(keys[KeyEvent.VK_UP]  && player.getY() != 108){
+                player.moveY(-32);
+                player.setDir(UP);
+                //changeSprite(frog, "frog-V.png", 24, 18);
+                frog = new ImageIcon("frog-V.png").getImage();
+                frog = frog.getScaledInstance(24, 18, Image.SCALE_SMOOTH);
             }
-            if(keys[KeyEvent.VK_DOWN] ){
-                frogy += 32;
+            if(keys[KeyEvent.VK_DOWN] && player.getY()!=460){
+                player.moveY(32);
+                player.setDir(DOWN);
+                //changeSprite(frog, "frog-V.png", 24, 18);
+                frog = new ImageIcon("frog-V.png").getImage();
+                frog = frog.getScaledInstance(24, 18, Image.SCALE_SMOOTH);
             }
             allowMove = false;
         }
     }
-
-
 
     public void keyTyped(KeyEvent e) {}
 
@@ -127,18 +115,82 @@ class GamePanel extends JPanel implements KeyListener{
     }
 
     public void keyReleased(KeyEvent e) {
-        //allowMove = true;
         keys[e.getKeyCode()] = false;
     }
 
     public void paintComponent(Graphics g){
         g.drawImage(back,0,0,this);
-        //g.setColor(Color.blue);
-        g.drawImage(frog,frogx,frogy,this);
-        //g.fillRect(frogx,frogy,24,20);
+        System.out.println(player.getX()+" "+player.getY());
+        if(player.getDir() == UP){
+            g.drawImage(frog,player.getX(),player.getY(),this);
+        }
+        else if(player.getDir() == LEFT){
+            g.drawImage(frog,player.getX(),player.getY(),this);
+        }
+        else if(player.getDir() == DOWN){
+            g.drawImage(frog, player.getX(), player.getY() + 18, 24, -18, null);
+        }
+        else if(player.getDir() == RIGHT){
+            g.drawImage(frog, player.getX() + 18, player.getY(), -18, 24, null);
+        }
+
     }
 }
 
+
+
+
+
+class movingItems extends Rectangle
+{
+    int dx, dy, dh, dw;
+    String att;
+
+    ImageIcon pic;
+    movingItems()
+    {
+        x = 100;
+        y = 150;
+
+        dx = 5;
+        dy = 0;
+
+        width = 100;
+        height = 50;
+        att = "car";
+    }
+
+    public void setSpeed(int xspeed, int yspeed)
+    {
+        dx = xspeed;
+        dy = yspeed;
+    }
+
+    public void setXY(int xpos, int ypos)
+    {
+        x = xpos;
+        y = ypos;
+    }
+    public void update()
+    {
+        if(x < dw )
+            x += dx;
+        else
+            x = 0;
+    }
+    public void setPic(ImageIcon p)
+    {
+        pic = p;
+    }
+
+    public void draw(Graphics g, Component c)
+    {
+        dh = c.getHeight();
+        dw = c.getWidth();
+        g.drawImage(pic.getImage(), x, y%c.getHeight(), width, height, c);
+        g.drawRect(x, y%c.getHeight(), width, height);
+    }
+}
 
 
 
