@@ -48,6 +48,11 @@ class GamePanel extends JPanel implements KeyListener{
     private final int LEFT = 3;
     private Frog player = new Frog();
 
+
+    movingItems bus, car, car2, log;
+
+	LinkedList<movingItems> moveList;
+
     public GamePanel(Frogger m){
         keys = new boolean[KeyEvent.KEY_LAST+1];
         back = new ImageIcon("background.png").getImage();

@@ -9,61 +9,61 @@ public class FrogPanel extends JPanel implements KeyListener
 	ImageIcon frogpic, background;
 	ImageIcon busR, carR, car2R, logpic;
 	Frog frog;
-	
+
 	boolean win = false;
-	
+
 	MovingObject bus, car, car2, log;
-	
+
 	LinkedList<MovingObject> moveList;
-	
+
 	FrogPanel()
 	{
 		frogpic = new ImageIcon("data/frogU.gif");
 		background = new ImageIcon("data/background.jpg");
-		
+
 		frog = new Frog();
 		frog.setPic(frogpic);
-		
+
 		log = new MovingObject();
 		logpic = new ImageIcon("data/medlog.png");
 		log.setPic(logpic);
 		log.y = 100;
 		log.dx = 3;
 		log.att = "log";
-		
+
 		createCars();
-		
+
 		addKeyListener(this);
 		setFocusable(true);
-		
+
 		UpdateThread ut = new UpdateThread(this);
 		ut.start();
 	}
-	
+
 	public void createCars()
 	{
 		moveList = new LinkedList<MovingObject>();
 		busR = new ImageIcon("data/busR.gif");
 		carR = new ImageIcon("data/carR.gif");
 		car2R = new ImageIcon("data/car2Right.gif");
-				
+
 		bus = new MovingObject();
 		bus.setPic(busR);
 		moveList.add(bus);
-		
+
 		car = new MovingObject();
 		car.setPic(carR);
 		car.setSpeed(8, 0);
 		car.setXY(200, 200);
 		moveList.add(car);
-		
+
 		car2 = new MovingObject();
 		car2.setPic(car2R);
 		car2.setSpeed(6, 0);
 		car2.setXY(200, 250);
 		moveList.add(car2);
 	}
-	
+
 	public boolean checkCollision(MovingObject o)
 	{
 		if(o.intersects(frog) == true )
@@ -83,7 +83,7 @@ public class FrogPanel extends JPanel implements KeyListener
 		}
 		return false;
 	}
-	
+
 	public void update()
 	{
 		for(MovingObject o : moveList)
@@ -106,7 +106,7 @@ public class FrogPanel extends JPanel implements KeyListener
 		log.update();
 		repaint();
 	}
-	
+
 	public void paintComponent(Graphics g)
 	{
 		g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
@@ -124,10 +124,10 @@ public class FrogPanel extends JPanel implements KeyListener
 		}
 	}
 
-	public void keyPressed(KeyEvent k) 
+	public void keyPressed(KeyEvent k)
 	{
 		char c = k.getKeyChar();
-		
+
 		if( k.getKeyCode() == KeyEvent.VK_LEFT )
     		frog.x -= 10;
     	if( k.getKeyCode() == KeyEvent.VK_RIGHT )
@@ -136,17 +136,17 @@ public class FrogPanel extends JPanel implements KeyListener
     		frog.y += 10;
     	if( k.getKeyCode() == KeyEvent.VK_UP )
     		frog.y -= 10;
-				
+
 		repaint();
 	}
 
-	public void keyReleased(KeyEvent k) 
+	public void keyReleased(KeyEvent k)
 	{
 		// TODO Auto-generated method stub
 	}
 
-	public void keyTyped(KeyEvent k) 
+	public void keyTyped(KeyEvent k)
 	{
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub
 	}
 }
