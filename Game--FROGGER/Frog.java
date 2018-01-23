@@ -1,29 +1,36 @@
-public class Frog{
+public class Frog
+{
     private int x = 298;
     private int y = 460;
     private int dir = 0;
 
-    public void setDir(int d){
+    public void setDir(int d)
+    {
         dir = d;
     }
 
-    public int getDir(){
+    public int getDir()
+    {
         return dir;
     }
 
-    public int getX(){
+    public int getX()
+    {
         return x;
     }
 
-     public int getY(){
+     public int getY()
+     {
         return y;
     }
 
-    public void moveX(int x){
+    public void moveX(int x)
+    {
         this.x += x;
     }
 
-     public void moveY(int y){
+    public void moveY(int y)
+    {
         this.y += y;
     }
 

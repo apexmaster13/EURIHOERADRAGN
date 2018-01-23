@@ -109,16 +109,19 @@ class GamePanel extends JPanel implements KeyListener{
 
     public void keyTyped(KeyEvent e) {}
 
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e)
+    {
         allowMove = true;
         keys[e.getKeyCode()] = true;
     }
 
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e)
+    {
         keys[e.getKeyCode()] = false;
     }
 
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g)
+    {
         g.drawImage(back,0,0,this);
         System.out.println(player.getX()+" "+player.getY());
         if(player.getDir() == UP){
