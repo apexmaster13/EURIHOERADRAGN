@@ -65,6 +65,30 @@ class GamePanel extends JPanel implements KeyListener{
         mainFrame.start();
     }
 
+    public void createCars()
+	{
+		moveList = new LinkedList<MovingObject>();
+		busR = new ImageIcon("data/busR.gif");
+		carR = new ImageIcon("data/carR.gif");
+		car2R = new ImageIcon("data/car2Right.gif");
+
+		bus = new MovingObject();
+		bus.setPic(busR);
+		moveList.add(bus);
+
+		car = new MovingObject();
+		car.setPic(carR);
+		car.setSpeed(8, 0);
+		car.setXY(200, 200);
+		moveList.add(car);
+
+		car2 = new MovingObject();
+		car2.setPic(car2R);
+		car2.setSpeed(6, 0);
+		car2.setXY(200, 250);
+		moveList.add(car2);
+	}
+
     /*
     public void changeSprite(Image img, String sprite, int x, int y){
         img = new ImageIcon(sprite).getImage();
