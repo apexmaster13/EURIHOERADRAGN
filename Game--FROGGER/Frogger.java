@@ -51,7 +51,7 @@ class GamePanel extends JPanel implements KeyListener{
 
     movingItems bus, car, car2, log;
 
-	//LinkedList<movingItems> moveList;
+	LinkedList<movingItems> moveList;
 
     public GamePanel(Frogger m){
         keys = new boolean[KeyEvent.KEY_LAST+1];
@@ -70,7 +70,7 @@ class GamePanel extends JPanel implements KeyListener{
         mainFrame.start();
     }
 
-   /* public void createCars()
+   public void createCars()
 	{
 		moveList = new LinkedList<MovingObject>();
 		busR = new ImageIcon("data/busR.gif");
@@ -92,7 +92,7 @@ class GamePanel extends JPanel implements KeyListener{
 		car2.setSpeed(6, 0);
 		car2.setXY(200, 250);
 		moveList.add(car2);
-	}*/
+	}
 
     /*
     public void changeSprite(Image img, String sprite, int x, int y){
