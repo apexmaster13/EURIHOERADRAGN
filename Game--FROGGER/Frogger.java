@@ -32,9 +32,11 @@ public class Frogger extends JFrame implements ActionListener{
         game.repaint();
     }
 
-    public static void main(String[] arguments) {
+    public static void main(String[] arguments)
+    {
         Frogger frame = new Frogger();
     }
+
 }
 
 class GamePanel extends JPanel implements KeyListener{
@@ -55,7 +57,8 @@ class GamePanel extends JPanel implements KeyListener{
 
 	LinkedList<movingItems> moveList;
 
-    public GamePanel(Frogger m){
+    public GamePanel(Frogger m)
+    {
         keys = new boolean[KeyEvent.KEY_LAST+1];
         back = new ImageIcon("background.png").getImage();
         back = back.getScaledInstance(460, 524, Image.SCALE_SMOOTH);
