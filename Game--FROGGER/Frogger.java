@@ -50,7 +50,7 @@ class GamePanel extends JPanel implements KeyListener{
 
 
     movingItems truck, car, car2, log;
-
+    ImageIcon truckP, carP, car2P, logpic;
 	LinkedList<movingItems> moveList;
 
     public GamePanel(Frogger m){
