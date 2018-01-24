@@ -103,6 +103,15 @@ class GamePanel extends JPanel implements KeyListener{
     }
     */
 
+    public void update()
+	{
+		for(MovingObject o : moveList)
+		{
+			o.update();
+		}
+		repaint();
+	}
+
     public void move(){
         if(allowMove == true){
             //&& frogx+20 < 554 && frogx-20 > -1 && frogy+20 < 259 && frogy-20 > -1
@@ -138,7 +147,7 @@ class GamePanel extends JPanel implements KeyListener{
         }
     }
 
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e){}
 
     public void keyPressed(KeyEvent e)
     {
@@ -167,7 +176,10 @@ class GamePanel extends JPanel implements KeyListener{
         else if(player.getDir() == RIGHT){
             g.drawImage(frog, player.getX() + 18, player.getY(), -18, 24, null);
         }
-
+        for(MovingObject o : moveList)
+		{
+			o.draw(g, this);
+		}
     }
 }
 
