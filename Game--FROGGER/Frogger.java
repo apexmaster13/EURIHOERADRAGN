@@ -75,9 +75,9 @@ class GamePanel extends JPanel implements KeyListener{
 	{
         moveList = new LinkedList<movingItem>();
 
-		truckR = new ImageIcon("data/truck.png");
-		carR = new ImageIcon("data/car.png");
-		car2R = new ImageIcon("data/car2.png");
+		truckP = new ImageIcon("data/truck.png");
+		carP = new ImageIcon("data/car.png");
+		car2P = new ImageIcon("data/car2.png");
 
 		truck = new movingItem();
 		truck.setPic(truckR);
@@ -90,7 +90,7 @@ class GamePanel extends JPanel implements KeyListener{
 		moveList.add(car);
 
 		car2 = new movingItem();
-		car2.setPic(car2R);
+		car2.setPic(car2P);
 		car2.setSpeed(6, 0);
 		car2.setXY(200, 250);
 		moveList.add(car2);
