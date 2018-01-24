@@ -48,7 +48,7 @@ public class movingItems extends Rectangle
 	{
 		dh = c.getHeight();
 		dw = c.getWidth();
-		g.drawImage(pic.getImage(), x, c.getHeight(), width, height, c);
-		g.drawRect(x, c.getHeight(), width, height);
+		g.drawImage(pic.getImage(), x, y%c.getHeight(), width, height, c);
+		g.drawRect(x, y%c.getHeight(), width, height);
 	}
 }
