@@ -49,7 +49,7 @@ class GamePanel extends JPanel implements KeyListener{
     private Frog player = new Frog();
 
 
-    movingItems bus, car, car2, log;
+    movingItems truck, car, car2, log;
 
 	LinkedList<movingItems> moveList;
 
@@ -64,7 +64,8 @@ class GamePanel extends JPanel implements KeyListener{
         addKeyListener(this);
     }
 
-    public void addNotify() {
+    public void addNotify()
+    {
         super.addNotify();
         requestFocus();
         mainFrame.start();
@@ -72,14 +73,15 @@ class GamePanel extends JPanel implements KeyListener{
 
    public void createCars()
 	{
-		moveList = new LinkedList<MovingObject>();
-		busR = new ImageIcon("data/busR.gif");
+        moveList = new LinkedList<MovingObject>();
+
+		truckR = new ImageIcon("data/truckR.gif");
 		carR = new ImageIcon("data/carR.gif");
 		car2R = new ImageIcon("data/car2Right.gif");
 
-		bus = new MovingObject();
-		bus.setPic(busR);
-		moveList.add(bus);
+		truck = new MovingObject();
+		truck.setPic(truckR);
+		moveList.add(truck);
 
 		car = new MovingObject();
 		car.setPic(carR);
