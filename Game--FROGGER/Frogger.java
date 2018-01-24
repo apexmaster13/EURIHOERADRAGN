@@ -50,7 +50,9 @@ class GamePanel extends JPanel implements KeyListener{
 
 
     movingItems truck, car, car2, log;
+
     ImageIcon truckP, carP, car2P, logpic;
+
 	LinkedList<movingItems> moveList;
 
     public GamePanel(Frogger m){
@@ -105,7 +107,7 @@ class GamePanel extends JPanel implements KeyListener{
 
     public void update()
 	{
-		for(MovingObject o : moveList)
+		for(movingItems o : moveList)
 		{
 			o.update();
 		}
@@ -176,7 +178,7 @@ class GamePanel extends JPanel implements KeyListener{
         else if(player.getDir() == RIGHT){
             g.drawImage(frog, player.getX() + 18, player.getY(), -18, 24, null);
         }
-        for(MovingObject o : moveList)
+        for(movingItems o : moveList)
 		{
 			o.draw(g, this);
 		}
