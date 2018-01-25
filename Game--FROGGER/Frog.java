@@ -14,6 +14,12 @@ public class Frog
         return dir;
     }
 
+    public void update()
+	{
+		x = 298;
+		y = 460;
+	}
+
     public int getX()
     {
         return x;
