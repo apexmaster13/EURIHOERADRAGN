@@ -43,9 +43,9 @@ public class FrogPanel extends JPanel implements KeyListener
 	public void createCars()
 	{
 		moveList = new LinkedList<MovingObject>();
-		busR = new ImageIcon("data/busR.gif");
-		carR = new ImageIcon("data/carR.gif");
-		car2R = new ImageIcon("data/car2Right.gif");
+		busR = new ImageIcon("data/busR.png");
+		carR = new ImageIcon("data/carR.png");
+		car2R = new ImageIcon("data/car2Right.png");
 
 		bus = new MovingObject();
 		bus.setPic(busR);
