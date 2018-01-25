@@ -74,7 +74,7 @@ class GamePanel extends JPanel implements KeyListener{
         setSize(466, 553);
         addKeyListener(this);
 
-        log = new MovingObject();
+        log = new movingItems();
 		logpic = new ImageIcon("data/log.png");
 		log.setPic(logpic);
 		log.y = 100;
@@ -115,7 +115,7 @@ class GamePanel extends JPanel implements KeyListener{
 		moveList.add(car2);
 	}
 
-    public boolean checkCollision(MovingObject o)
+    public boolean checkCollision(movingItems o)
 	{
 		if(o.intersects(frog) == true )
 		{
@@ -126,7 +126,7 @@ class GamePanel extends JPanel implements KeyListener{
 			}
 			else if(o.att.equalsIgnoreCase("log"))
 			{
-				if(frog.x > o.scw)
+				if(frog.x > o.dw)
 					win = true;
 				frog.x += o.dx;
 			}
@@ -144,7 +144,7 @@ class GamePanel extends JPanel implements KeyListener{
 
     public void update()
 	{
-		for(MovingObject o : moveList)
+		for(movingItems o : moveList)
 		{
 			checkCollision(o);
 			o.update();
