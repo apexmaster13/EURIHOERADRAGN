@@ -68,6 +68,14 @@ class GamePanel extends JPanel implements KeyListener{
         mainFrame = m;
         setSize(466, 553);
         addKeyListener(this);
+
+        log = new MovingObject();
+		logpic = new ImageIcon("data/log.png");
+		log.setPic(logpic);
+		log.y = 100;
+		log.dx = 3;
+		log.att = "log";
+
     }
 
     public void addNotify()
