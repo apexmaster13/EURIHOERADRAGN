@@ -18,8 +18,8 @@ public class FrogPanel extends JPanel implements KeyListener
 
 	FrogPanel()
 	{
-		frogpic = new ImageIcon("data/frogU.gif");
-		background = new ImageIcon("data/background.jpg");
+		frogpic = new ImageIcon("data/frog-V.png");
+		background = new ImageIcon("data/background.png");
 
 		frog = new Frog();
 		frog.setPic(frogpic);
