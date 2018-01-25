@@ -1,10 +1,15 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import java.awt.image.*;
-import java.io.*;
-import javax.imageio.*;
-import java.awt.Rectangle.*;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.LinkedList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class Frogger extends JFrame implements ActionListener{
     Timer myTimer;
@@ -110,6 +115,26 @@ class GamePanel extends JPanel implements KeyListener{
 		moveList.add(car2);
 	}
 
+    public boolean checkCollision(MovingObject o)
+	{
+		if(o.intersects(frog) == true )
+		{
+			if(o.att.equalsIgnoreCase("Car"))
+			{
+				frog.update();
+				System.out.println("Run Over");
+			}
+			else if(o.att.equalsIgnoreCase("log"))
+			{
+				if(frog.x > o.scw)
+					win = true;
+				frog.x += o.dx;
+			}
+			return true;
+		}
+		return false;
+    }
+
     /*
     public void changeSprite(Image img, String sprite, int x, int y){
         img = new ImageIcon(sprite).getImage();
@@ -139,26 +164,6 @@ class GamePanel extends JPanel implements KeyListener{
 		log.update();
 		repaint();
     }
-
-    public boolean checkCollision(MovingObject o)
-	{
-		if(o.intersects(frog) == true )
-		{
-			if(o.att.equalsIgnoreCase("Car"))
-			{
-				frog.update();
-				System.out.println("Run Over");
-			}
-			else if(o.att.equalsIgnoreCase("log"))
-			{
-				if(frog.x > o.scw)
-					win = true;
-				frog.x += o.dx;
-			}
-			return true;
-		}
-		return false;
-	}
 
     public void move(){
         if(allowMove == true){
