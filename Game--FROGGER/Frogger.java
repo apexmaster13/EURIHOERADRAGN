@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.image.*;
 import java.io.*;
 import javax.imageio.*;
+import java.awt.Rectangle.*;
 
 public class Frogger extends JFrame implements ActionListener{
     Timer myTimer;
@@ -129,6 +130,26 @@ class GamePanel extends JPanel implements KeyListener{
 		}
 		log.update();
 		repaint();
+    }
+
+    public boolean checkCollision(MovingObject o)
+	{
+		if(o.intersects(frog) == true )
+		{
+			if(o.att.equalsIgnoreCase("Car"))
+			{
+				frog.update();
+				System.out.println("Run Over");
+			}
+			else if(o.att.equalsIgnoreCase("log"))
+			{
+				if(frog.x > o.scw)
+					win = true;
+				frog.x += o.dx;
+			}
+			return true;
+		}
+		return false;
 	}
 
     public void move(){
