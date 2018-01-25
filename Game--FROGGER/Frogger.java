@@ -110,10 +110,24 @@ class GamePanel extends JPanel implements KeyListener{
 
     public void update()
 	{
-		for(movingItems o : moveList)
+		for(MovingObject o : moveList)
 		{
+			checkCollision(o);
 			o.update();
 		}
+		if(frog.y  + frog.height <= log.y + log.height)
+		{
+			if(checkCollision(log))
+			{
+				System.out.println("Hit log");
+			}
+			else
+			{
+				frog.update();
+				System.out.println("Drown");
+			}
+		}
+		log.update();
 		repaint();
 	}
 
