@@ -1,8 +1,20 @@
+import java.awt.*;
+import javax.swing.*;
+
 public class Frog
 {
+
     private int x = 298;
     private int y = 460;
     private int dir = 0;
+    private int width = 30;
+    private int height = 30;
+    private ImageIcon pic;
+
+	public void setPic(ImageIcon p)
+    {
+        pic = p;
+    }
 
     public void setDir(int d)
     {
@@ -38,6 +50,12 @@ public class Frog
     public void moveY(int y)
     {
         this.y += y;
+    }
+
+    public void draw(Graphics g, Component c)
+    {
+        g.drawImage(pic.getImage(),x,y,width,height,c);
+        g.drawRect(x, y, width, height);
     }
 
 }
