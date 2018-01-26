@@ -37,6 +37,16 @@ public class Frog
         return x;
     }
 
+    public int height()
+    {
+        return height;
+    }
+
+    public int width()
+    {
+        return width;
+    }
+
      public int getY()
      {
         return y;

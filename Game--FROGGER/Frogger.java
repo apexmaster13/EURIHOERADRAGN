@@ -122,14 +122,15 @@ class GamePanel extends JPanel implements KeyListener{
 		{
 			if(o.att.equalsIgnoreCase("Car"))
 			{
-				frog.update();
+				player.update();
 				System.out.println("Run Over");
 			}
 			else if(o.att.equalsIgnoreCase("log"))
 			{
 				if(player.getX() > o.dw)
-					win = true;
-				player.getX() += o.dx;
+                    win = true;
+                player.moveX(o.dx);
+				//player.getX() += o.dx;
 			}
 			return true;
 		}
@@ -150,7 +151,7 @@ class GamePanel extends JPanel implements KeyListener{
 			checkCollision(o);
 			o.update();
 		}
-		if(player.getY()  + frog.height <= log.y + log.height)
+		if(player.getY()  + player.height() <= log.y + log.height)
 		{
 			if(checkCollision(log))
 			{
@@ -158,7 +159,7 @@ class GamePanel extends JPanel implements KeyListener{
 			}
 			else
 			{
-				frog.update();
+				player.update();
 				System.out.println("Drown");
 			}
 		}
