@@ -70,6 +70,7 @@ class GamePanel extends JPanel implements KeyListener{
         back = back.getScaledInstance(460, 524, Image.SCALE_SMOOTH);
         frog = new ImageIcon("frog-V.png").getImage();
         frog = frog.getScaledInstance(24, 18, Image.SCALE_SMOOTH);
+
         mainFrame = m;
         setSize(466, 553);
         addKeyListener(this);
@@ -126,9 +127,9 @@ class GamePanel extends JPanel implements KeyListener{
 			}
 			else if(o.att.equalsIgnoreCase("log"))
 			{
-				if(frog.x > o.dw)
+				if(player.getX() > o.dw)
 					win = true;
-				frog.x += o.dx;
+				player.getX() += o.dx;
 			}
 			return true;
 		}
@@ -149,7 +150,7 @@ class GamePanel extends JPanel implements KeyListener{
 			checkCollision(o);
 			o.update();
 		}
-		if(frog.y  + frog.height <= log.y + log.height)
+		if(player.getY()  + frog.height <= log.y + log.height)
 		{
 			if(checkCollision(log))
 			{
