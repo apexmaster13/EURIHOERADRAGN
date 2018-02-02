@@ -114,7 +114,8 @@ class GamePanel extends JPanel implements KeyListener{
 		car2.setSpeed(6, 0);
 		car2.setXY(200, 250);
 		moveList.add(car2);
-	}
+    }
+    /*
 
     public boolean checkCollision(movingItems o)
 	{
@@ -136,6 +137,7 @@ class GamePanel extends JPanel implements KeyListener{
 		}
 		return false;
     }
+    */
 
     /*
     public void changeSprite(Image img, String sprite, int x, int y){
@@ -143,7 +145,7 @@ class GamePanel extends JPanel implements KeyListener{
         img = img.getScaledInstance(x, y, Image.SCALE_SMOOTH);
     }
     */
-
+/*
     public void update()
 	{
 		for(movingItems o : moveList)
@@ -166,7 +168,7 @@ class GamePanel extends JPanel implements KeyListener{
 		log.update();
 		repaint();
     }
-
+*/
     public void move(){
         if(allowMove == true){
             //&& frogx+20 < 554 && frogx-20 > -1 && frogy+20 < 259 && frogy-20 > -1
