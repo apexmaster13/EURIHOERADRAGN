@@ -56,12 +56,13 @@ class GamePanel extends JPanel implements KeyListener{
     private final int LEFT = 3;
     private Frog player = new Frog();
 
-
     movingItems truck, car, car2, log;
 
     ImageIcon truckP, carP, car2P, logpic;
 
-	LinkedList<movingItems> moveList;
+    LinkedList<movingItems> moveList;
+
+    createCars();
 
     public GamePanel(Frogger m)
     {
@@ -235,7 +236,8 @@ class GamePanel extends JPanel implements KeyListener{
         }
         for(movingItems o : moveList)
 		{
-			o.draw(g, this);
+            if(o!=null)
+			    o.draw(g, this);
 		}
     }
 }
