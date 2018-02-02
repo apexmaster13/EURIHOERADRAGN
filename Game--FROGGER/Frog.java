@@ -9,9 +9,15 @@ public class Frog
     private int dir = 0;
     private int width = 30;
     private int height = 30;
+    private Rectangle frogRect;
     private ImageIcon pic;
 
-	public void setPic(ImageIcon p)
+    public Rectangle getRect()
+    {
+        return frogRect;
+    }
+	
+    public void setPic(ImageIcon p)
     {
         pic = p;
     }
@@ -65,7 +71,8 @@ public class Frog
     public void draw(Graphics g, Component c)
     {
         g.drawImage(pic.getImage(),x,y,width,height,c);
-        g.drawRect(x, y, width, height);
+        //g.drawRect(x, y, width, height);
+    	Rectangle frogRect = new Rectangle(x,y,width,height);
     }
 
 }
