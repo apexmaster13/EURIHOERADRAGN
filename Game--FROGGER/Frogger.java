@@ -43,6 +43,8 @@ public class Frogger extends JFrame implements ActionListener{
         Frogger frame = new Frogger();
     }
 
+
+
 }
 
 class GamePanel extends JPanel implements KeyListener{
@@ -62,7 +64,6 @@ class GamePanel extends JPanel implements KeyListener{
 
     LinkedList<movingItems> moveList;
 
-    createCars();
 
     public GamePanel(Frogger m)
     {
@@ -75,6 +76,7 @@ class GamePanel extends JPanel implements KeyListener{
         mainFrame = m;
         setSize(466, 553);
         addKeyListener(this);
+        createCars();
 
         log = new movingItems();
 		logpic = new ImageIcon("data/log.png");
