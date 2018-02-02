@@ -126,14 +126,14 @@ class GamePanel extends JPanel implements KeyListener{
 				player.update();
 				System.out.println("Run Over");
 			}
-			else if(o.att.equalsIgnoreCase("log"))
+			/*else if(o.att.equalsIgnoreCase("log"))
 			{
 				if(player.getX() > o.dw)
                     win = true;
                 player.moveX(o.dx);
 				//player.getX() += o.dx;
 			}
-			return true;
+			return true;*/
 		}
 		return false;
     }
