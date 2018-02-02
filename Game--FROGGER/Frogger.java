@@ -78,6 +78,9 @@ class GamePanel extends JPanel implements KeyListener{
         addKeyListener(this);
         createCars();
 
+        UpdateThread ut = new UpdateThread(this);
+		ut.start();
+
         log = new movingItems();
 		logpic = new ImageIcon("data/log.png");
 		log.setPic(logpic);

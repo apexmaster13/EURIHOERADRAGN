@@ -1,17 +1,17 @@
-/*import javax.swing.*;
+import javax.swing.*;
 
 public class UpdateThread extends Thread
 {
-	FrogPanel panel;
+	GamePanel panel;
 
-	UpdateThread(FrogPanel p)
+	UpdateThread(GamePanel p)
 	{
 		panel = p;
 	}
 
 	public void run()
 	{
-		while(!panel.win)
+		/*while(!panel.win)
 		{
 			panel.update();
 			try
@@ -21,7 +21,6 @@ public class UpdateThread extends Thread
 			{
 				e.printStackTrace();
 			}
-		}
+	}*/
 	}
 }
-*/
