@@ -70,6 +70,7 @@ class GamePanel extends JPanel implements KeyListener{
         keys = new boolean[KeyEvent.KEY_LAST+1];
         back = new ImageIcon("Data/background.png").getImage();
         back = back.getScaledInstance(460, 524, Image.SCALE_SMOOTH);
+        //back = back.getScaledInstance(back.getWidth(null)*2,back.getHeight(null)*2, Image.SCALE_SMOOTH);
         frog = new ImageIcon("Data/frog-V.png").getImage();
         frog = frog.getScaledInstance(24, 18, Image.SCALE_SMOOTH);
 
@@ -100,11 +101,11 @@ class GamePanel extends JPanel implements KeyListener{
         car3Pic = new ImageIcon("Data/car3.png").getImage();
         car3Pic = car3Pic.getScaledInstance(46, 28, Image.SCALE_SMOOTH);
         car4Pic = new ImageIcon("Data/car4.png").getImage();
-        car4Pic = car4Pic.getScaledInstance(car4Pic.getWidth(null)*2, car4Pic.getWidth(null)*2, Image.SCALE_SMOOTH);
+        car4Pic = car4Pic.getScaledInstance(car4Pic.getWidth(null)*2, car4Pic.getHeight(null)*2, Image.SCALE_SMOOTH);
         logpic = new ImageIcon("Data/log.png").getImage();
 
-
-        truck = new MovingItems(0, 292, 3, 0, "car", truckPic, 68, 34);
+                            //
+        truck = new MovingItems(459, 292, -3, 0, "car", truckPic, 68, 34);
         moveList.add(truck);
 
         car = new MovingItems(0, 390, 1, 0, "car", carPic, 38, 30);
