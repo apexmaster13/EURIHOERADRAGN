@@ -146,7 +146,8 @@ class GamePanel extends JPanel implements KeyListener{
        repaint();
    }
 */
-    public void move(){
+    public void move()
+    {
         if(allowMove == true){
             if(keys[KeyEvent.VK_RIGHT]  && player.getX()!= 426){
                 player.moveX(32);
