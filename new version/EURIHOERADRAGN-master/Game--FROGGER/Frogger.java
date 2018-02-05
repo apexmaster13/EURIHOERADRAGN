@@ -90,7 +90,7 @@ class GamePanel extends JPanel implements KeyListener{
     public void createObjects()
     {
         moveList = new LinkedList<MovingItems>();
-        
+
         truckPic = new ImageIcon("Data/truck.png").getImage();
         truckPic = truckPic.getScaledInstance(truckPic.getWidth(null)*2, truckPic.getHeight(null)*2, Image.SCALE_SMOOTH);
         carPic = new ImageIcon("Data/car.png").getImage();
@@ -103,22 +103,22 @@ class GamePanel extends JPanel implements KeyListener{
         car4Pic = car4Pic.getScaledInstance(car4Pic.getWidth(null)*2, car4Pic.getWidth(null)*2, Image.SCALE_SMOOTH);
         logpic = new ImageIcon("Data/log.png").getImage();
 
-        
+
         truck = new MovingItems(0, 292, 3, 0, "car", truckPic, 68, 34);
         moveList.add(truck);
-        
+
         car = new MovingItems(0, 390, 1, 0, "car", carPic, 38, 30);
         moveList.add(car);
-        
+
         car2 = new MovingItems(459, 364, -3, 0, "car", car2Pic, 46, 28);
         moveList.add(car2);
-        
+
         car3 = new MovingItems(0, 332, 3, 0, "car", car3Pic, 46, 28);
         moveList.add(car3);
-        
+
         car4 = new MovingItems(459, 435, -3, 0, "car", car4Pic, 46, 28);
         moveList.add(car4);
-        
+
         log = new MovingItems(0, 100, 5, 0, "log", logpic, 30, 20);
         moveList.add(log);
     }
@@ -131,11 +131,11 @@ class GamePanel extends JPanel implements KeyListener{
             player.update();
             return true;
         }
-        
+
         return false;
     }
 
-   public void update()
+   /*public void update()
    {
        for(MovingItems o : moveList)
        {
@@ -145,7 +145,7 @@ class GamePanel extends JPanel implements KeyListener{
        log.update();
        repaint();
    }
-
+*/
     public void move(){
         if(allowMove == true){
             if(keys[KeyEvent.VK_RIGHT]  && player.getX()!= 426){
@@ -193,16 +193,16 @@ class GamePanel extends JPanel implements KeyListener{
     public void paintComponent(Graphics g)
     {
         g.drawImage(back,0,0,this);
-        
+
         System.out.println(player.getX()+" "+player.getY());
-        
+
         for(MovingItems o : moveList)
         {
             o.draw(g, this);
             o.update();
             checkCollision(o);
         }
-        
+
         player.draw(g);
     }
 }
