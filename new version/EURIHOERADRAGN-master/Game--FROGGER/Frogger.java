@@ -97,9 +97,9 @@ class GamePanel extends JPanel implements KeyListener{
         carPic = new ImageIcon("Data/car.png").getImage();
         carPic = carPic.getScaledInstance(carPic.getWidth(null)*2, carPic.getHeight(null)*2, Image.SCALE_SMOOTH);
         car2Pic = new ImageIcon("Data/car2.png").getImage();
-        car2Pic = car2Pic.getScaledInstance(46, 28, Image.SCALE_SMOOTH);
+        car2Pic = car2Pic.getScaledInstance(car2Pic.getWidth(null)*2, car2Pic.getHeight(null)*2, Image.SCALE_SMOOTH);
         car3Pic = new ImageIcon("Data/car3.png").getImage();
-        car3Pic = car3Pic.getScaledInstance(46, 28, Image.SCALE_SMOOTH);
+        car3Pic = car3Pic.getScaledInstance(car3Pic.getWidth(null)*2, car3Pic.getHeight(null)*2, Image.SCALE_SMOOTH);
         car4Pic = new ImageIcon("Data/car4.png").getImage();
         car4Pic = car4Pic.getScaledInstance(car4Pic.getWidth(null)*2, car4Pic.getHeight(null)*2, Image.SCALE_SMOOTH);
         logpic = new ImageIcon("Data/log.png").getImage();
@@ -108,13 +108,13 @@ class GamePanel extends JPanel implements KeyListener{
         truck = new MovingItems(459, 292, -3, 0, "car", truckPic, 68, 34);
         moveList.add(truck);
 
-        car = new MovingItems(0, 390, 1, 0, "car", carPic, 38, 30);
+        car = new MovingItems(0, 390, 1, 0, "car", carPic, 30, 27);
         moveList.add(car);
 
         car2 = new MovingItems(459, 364, -3, 0, "car", car2Pic, 46, 28);
         moveList.add(car2);
 
-        car3 = new MovingItems(0, 332, 3, 0, "car", car3Pic, 46, 28);
+        car3 = new MovingItems(0, 328, 3, 0, "car", car3Pic, 46, 28);
         moveList.add(car3);
 
         car4 = new MovingItems(459, 423, -3, 0, "car", car4Pic, 46, 28);
