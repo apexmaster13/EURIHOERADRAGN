@@ -7,8 +7,8 @@ public class MovingItems
     private String type;
     private Image pic;
     private Rectangle rect;
-    
-    MovingItems(int x, int y, int dx, int dy, String type, Image pic, int width, int height)
+
+    MovingItems(int x, int y, int dx, int dy, String type, Image pic)
     {
         this.x = x;
         srtX = x;
@@ -17,22 +17,22 @@ public class MovingItems
         this.dy = dy;
         this.pic = pic;
         this.type = type;
-        this.width = width;
-        this.height = height;
+       // this.width = width;
+        //this.height = height;
     }
-    
+
     public void setSpeed(int xspeed, int yspeed)
     {
         dx = xspeed;
         dy = yspeed;
     }
-    
+
     public void setXY(int xpos, int ypos)
     {
         x = xpos;
         y = ypos;
     }
-    
+
     public void update()
     {
         if(x < dw && x > -10){
@@ -42,44 +42,44 @@ public class MovingItems
             x = srtX;
         }
     }
-    
+
      public void setPic(Image p)
     {
         pic = p;
     }
 
 //-----------------------------getter methods----------------------------------------------
-    
+
     public Rectangle getRect()
     {
-        rect = new Rectangle(x,y,width,height);
+        rect = new Rectangle(x,y,pic.getWidth(null)*2,pic.getHeight(null)*2);
         return rect;
     }
-    
+
     public int getX()
     {
         return x;
     }
-    
+
     public int getY()
     {
         return y;
     }
-    
+
     public int getHeight()
     {
         return height;
     }
-    
+
     public int getWidth()
     {
         return width;
     }
-    
+
     public int getSpeedX(){
         return dx;
     }
-    
+
     public void draw(Graphics g, Component c)
     {
         dh = c.getHeight();
