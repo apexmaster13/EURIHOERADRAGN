@@ -105,7 +105,7 @@ class GamePanel extends JPanel implements KeyListener{
         logpic = new ImageIcon("Data/log.png").getImage();
 
                             //
-        truck = new MovingItems(459, 292, -3, 0, "car", truckPic);
+        truck = new MovingItems(459, 300, -3, 0, "car", truckPic);
         moveList.add(truck);
 
         car = new MovingItems(0, 390, 1, 0, "car", carPic);

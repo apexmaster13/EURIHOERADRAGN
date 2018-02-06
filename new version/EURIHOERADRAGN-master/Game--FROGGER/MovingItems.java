@@ -52,7 +52,7 @@ public class MovingItems
 
     public Rectangle getRect()
     {
-        rect = new Rectangle(x,y,pic.getWidth(null),pic.getHeight(null));
+        rect = new Rectangle(x,y+3,pic.getWidth(null),pic.getHeight(null));
         return rect;
     }
 
