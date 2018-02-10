@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
+import java.util.*;
 
 public class MovingItems
 {
@@ -7,6 +8,8 @@ public class MovingItems
     private String type;
     private Image pic;
     private Rectangle rect;
+    private Random rand = new Random();
+    private int rng;
 
     MovingItems(int x, int y, int dx, int dy, String type, Image pic)
     {
@@ -35,12 +38,47 @@ public class MovingItems
 
     public void update()
     {
-        if(x < dw && x > -10){
+        x += dx;
+        /*if(x>-30 && x<480){
             x += dx;
         }
         else{
             x = srtX;
         }
+        /*
+        rng = rand.nextInt(3)+1;
+        
+        if(srtX == 0 && x<=459){
+            x += dx;
+        }
+        
+        else if(srtX == 459 && x>=-10){
+            x += dx;
+        }
+        
+        else if(srtX == 459 && x<-10){
+            rng = rand.nextInt(3)+1;
+            if(rng == 1){
+                x = srtX;
+            }
+            else if(rng == 2){
+                x = srtX + 50;
+            }
+            else{
+                x = srtX + 100;
+            }
+        }
+        else if(srtX == 0 && x>459){
+            if(rng == 1){
+                x = srtX;
+            }
+            else if(rng == 2){
+                x = srtX - 50;
+            }
+            else{
+                x = srtX - 100;
+            }
+        }*/
     }
 
      public void setPic(Image p)
@@ -52,7 +90,7 @@ public class MovingItems
 
     public Rectangle getRect()
     {
-        rect = new Rectangle(x,y+3,pic.getWidth(null),pic.getHeight(null));
+        rect = new Rectangle(x,y,pic.getWidth(null),pic.getHeight(null));
         return rect;
     }
 
@@ -79,6 +117,10 @@ public class MovingItems
     public int getSpeedX(){
         return dx;
     }
+    
+    public String getType(){
+        return type;
+    }
 
     public void draw(Graphics g, Component c)
     {
@@ -88,6 +130,6 @@ public class MovingItems
         //g.drawImage(pic.getImage(), x, y%c.getHeight(), width, height, c);
         g.drawImage(pic, x, y, c);
         //g.drawRect(x, y%c.getHeight(), width, height);
-        g.drawRect(x, y, width, height);
+        g.drawRect(x, y, pic.getWidth(null), pic.getHeight(null));
     }
 }
