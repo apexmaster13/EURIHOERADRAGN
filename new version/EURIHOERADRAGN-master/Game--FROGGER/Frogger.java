@@ -1,10 +1,13 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                import java.awt.Graphics;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.LinkedList;
+
+import java.util.*;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -53,14 +56,17 @@ class GamePanel extends JPanel implements KeyListener{
     private Image back, frog;
     private Frogger mainFrame;
     private Frog player = new Frog();
+    private Random rand = new Random();
+    private int rng = rand.nextInt(1300) + 1200;
     private final int UP = 0;
     private final int DOWN = 1;
     private final int RIGHT = 2;
     private final int LEFT = 3;
+    private int spawnCounter = 2;
 
     MovingItems truck, car, car2, car3, car4, log;
 
-    Image truckPic, carPic, car2Pic, car3Pic, car4Pic, logpic;
+    Image truckPic, carPic, car2Pic, car3Pic, car4Pic, logPic;
 
     LinkedList<MovingItems> moveList;
 
@@ -72,26 +78,6 @@ class GamePanel extends JPanel implements KeyListener{
         back = back.getScaledInstance(460, 524, Image.SCALE_SMOOTH);
         //back = back.getScaledInstance(back.getWidth(null)*2,back.getHeight(null)*2, Image.SCALE_SMOOTH);
         frog = new ImageIcon("Data/frog-V.png").getImage();
-        frog = frog.getScaledInstance(24, 18, Image.SCALE_SMOOTH);
-
-        mainFrame = m;
-        setSize(466, 553);
-        addKeyListener(this);
-        createObjects();
-
-    }
-
-    public void addNotify()
-    {
-        super.addNotify();
-        requestFocus();
-        mainFrame.start();
-    }
-
-    public void createObjects()
-    {
-        moveList = new LinkedList<MovingItems>();
-
         truckPic = new ImageIcon("Data/truck.png").getImage();
         truckPic = truckPic.getScaledInstance(truckPic.getWidth(null)*2, truckPic.getHeight(null)*2, Image.SCALE_SMOOTH);
         carPic = new ImageIcon("Data/car.png").getImage();
@@ -102,32 +88,71 @@ class GamePanel extends JPanel implements KeyListener{
         car3Pic = car3Pic.getScaledInstance(car3Pic.getWidth(null)*2, car3Pic.getHeight(null)*2, Image.SCALE_SMOOTH);
         car4Pic = new ImageIcon("Data/car4.png").getImage();
         car4Pic = car4Pic.getScaledInstance(car4Pic.getWidth(null)*2, car4Pic.getHeight(null)*2, Image.SCALE_SMOOTH);
-        logpic = new ImageIcon("Data/log.png").getImage();
+        logPic = new ImageIcon("Data/log.png").getImage();
+        logPic = logPic.getScaledInstance(logPic.getWidth(null)*2, logPic.getHeight(null)*2, Image.SCALE_SMOOTH);
+        frog = frog.getScaledInstance(24, 18, Image.SCALE_SMOOTH);
+        moveList = new LinkedList<MovingItems>();
 
-                            //
-        truck = new MovingItems(459, 300, -1, 0, "car", truckPic);
-        moveList.add(truck);
+        mainFrame = m;
+        setSize(466, 553);
+        addKeyListener(this);
+        //spawnCars();
+        //spawnLogs();
+        t.start();
 
-        car = new MovingItems(0, 390, 1, 0, "car", carPic);
-        moveList.add(car);
-
-        car2 = new MovingItems(459, 364, -2, 0, "car", car2Pic);
-        moveList.add(car2);
-
-        car3 = new MovingItems(0, 328, 3, 0, "car", car3Pic);
-        moveList.add(car3);
-
-        car4 = new MovingItems(459, 423, -3, 0, "car", car4Pic);
-        moveList.add(car4);
-
-        log = new MovingItems(0, 100, 5, 0, "log", logpic);
-        moveList.add(log);
     }
+    /*
+    Timer t = new Timer(rng, new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            spawnCars();
+            spawnLogs();
+            rng = rand.nextInt(1225) + 1200;
+            spawnCounter -=1;
+            if(spawnCounter==0){
+                System.out.println("stopped");
+                t.stop();
+                spawnCounter = 3;
+            }
+        }
+    });*/
 
+    Timer t = new Timer(2000, new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            rng = rand.nextInt(90);
+            truck = new MovingItems(459+rng, 300, -1, 0, "car", truckPic);
+            moveList.add(truck);
+
+            car = new MovingItems(0-rng, 390, 1, 0, "car", carPic);
+            moveList.add(car);
+
+            car2 = new MovingItems(459+rng, 364, -2, 0, "car", car2Pic);
+            moveList.add(car2);
+
+            car3 = new MovingItems(0-rng, 328, 3, 0, "car", car3Pic);
+            moveList.add(car3);
+
+            car4 = new MovingItems(459+rng, 423, -3, 0, "car", car4Pic);
+            moveList.add(car4);
+
+            log = new MovingItems(0, 203, 1, 0, "log", logPic);
+            moveList.add(log);
+            //spawnCars();
+            //spawnLogs();
+            //spawnCounter -=1;
+
+        }
+    });
+
+    public void addNotify()
+    {
+        super.addNotify();
+        requestFocus();
+        mainFrame.start();
+    }
 
     public boolean checkCollision(MovingItems o)
     {
-        if(o.getRect().intersects(player.getRect()) == true )
+        if(o.getRect().intersects(player.getRect()) == true && o.getType() == "car")
         {
             player.update();
             return true;
@@ -205,10 +230,15 @@ class GamePanel extends JPanel implements KeyListener{
             checkCollision(o);
         }
 
+        for(int i=moveList.size()-1; i>=0; i--){
+         MovingItems o = moveList.get(i);
+         if(o.getX()>600 || o.getX()<-200){
+          moveList.remove(o);
+         }
+        }
         player.draw(g);
     }
 }
-
 
 
 
