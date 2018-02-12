@@ -46,9 +46,6 @@ public class Frogger extends JFrame implements ActionListener{
     {
         Frogger frame = new Frogger();
     }
-
-
-
 }
 
 class GamePanel extends JPanel implements KeyListener{
