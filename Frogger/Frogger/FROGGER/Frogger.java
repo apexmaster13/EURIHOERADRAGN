@@ -141,7 +141,7 @@ class GamePanel extends JPanel implements KeyListener{
             //--------------------------water---------------------------------
             log = new MovingItems(0, 203, 1, 0, "log", logPic);
             moveList.add(log);
-            
+
             for(int i=0; i<rand.nextInt(4); i++){
                 turtle = new MovingItems(459+i*26, 236, -2, 0, "turtle", turtlePic);
                 moveList.add(turtle);
@@ -152,10 +152,11 @@ class GamePanel extends JPanel implements KeyListener{
 
         }
     });
-    
-    Timer animationTimer = new Timer(500, new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-            }
+
+    Timer animationTimer = new Timer(500, new ActionListener()
+    {
+        public void actionPerformed(ActionEvent e)
+        {
         }
     });
 
@@ -181,7 +182,7 @@ class GamePanel extends JPanel implements KeyListener{
         }
         else{ //not on water
             if(o.getRect().intersects(player.getRect()) == true && o.getType() == "car")
-            {                
+            {
                 player.update();
                 return true;
             }
@@ -267,7 +268,7 @@ class GamePanel extends JPanel implements KeyListener{
           moveList.remove(o);
          }
         }
-        
+
         player.draw(g);
     }
 }

@@ -18,7 +18,8 @@ public class Frogger extends JFrame implements ActionListener{
     Timer myTimer;
     GamePanel game;
 
-    public Frogger() {
+    public Frogger()
+    {
         super("Frogger");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(466, 553);
@@ -32,11 +33,13 @@ public class Frogger extends JFrame implements ActionListener{
         setVisible(true);
     }
 
-    public void start(){
+    public void start()
+    {
         myTimer.start();
     }
 
-    public void actionPerformed(ActionEvent evt){
+    public void actionPerformed(ActionEvent evt)
+    {
         game.move();
         game.repaint();
     }
@@ -50,7 +53,8 @@ public class Frogger extends JFrame implements ActionListener{
 
 }
 
-class GamePanel extends JPanel implements KeyListener{
+class GamePanel extends JPanel implements KeyListener
+{
     private boolean []keys;
     private boolean allowMove = true;
     private Image back, frog;
@@ -116,8 +120,10 @@ class GamePanel extends JPanel implements KeyListener{
         }
     });*/
 
-    Timer t = new Timer(2000, new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
+    Timer t = new Timer(2000, new ActionListener()
+    {
+        public void actionPerformed(ActionEvent e)
+        {
             rng = rand.nextInt(90);
             truck = new MovingItems(459+rng, 300, -1, 0, "car", truckPic);
             moveList.add(truck);
