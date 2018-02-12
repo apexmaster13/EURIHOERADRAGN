@@ -96,6 +96,8 @@ class GamePanel extends JPanel implements KeyListener{
         logPic = logPic.getScaledInstance(logPic.getWidth(null)*2, logPic.getHeight(null)*2, Image.SCALE_SMOOTH);
         turtlePic = new ImageIcon("Data/turtle0.png").getImage();
         turtlePic = turtlePic.getScaledInstance(turtlePic.getWidth(null)*2, turtlePic.getHeight(null)*2, Image.SCALE_SMOOTH);
+        snakePic = new ImageIcon("Data/snake0.png").getImage();
+        snakePic = snakePic.getScaledInstance(snakePic.getWidth(null)*2, snakePic.getHeight(null)*2, Image.SCALE_SMOOTH);
         frog = frog.getScaledInstance(24, 18, Image.SCALE_SMOOTH);
         moveList = new LinkedList<MovingItems>();
 
@@ -141,6 +143,9 @@ class GamePanel extends JPanel implements KeyListener{
 
             car4 = new MovingItems(459+rng, 423, -3, 0, "car", car4Pic);
             moveList.add(car4);
+
+            snake = new MovingItems(0, 268, 3, 0, "snake", snakePic);
+            moveList.add(snake);
             //--------------------------water---------------------------------
 
             for(int i=0; i<rand.nextInt(4)+2; i++){
@@ -162,9 +167,14 @@ class GamePanel extends JPanel implements KeyListener{
     Timer aniTimer = new Timer(500, new ActionListener() {
 	  	public void actionPerformed(ActionEvent e) {
 	  		tCounter+=1;
+	  		sCounter+=1;
 	        	if(tCounter == 5)
 	        	{
 	        		tCounter = 0;
+	        	}
+	        	if(sCounter == 4)
+	        	{
+	        		sCounter = 0;
 	        	}
 			for(MovingItems o : moveList)
 	        {
@@ -173,6 +183,13 @@ class GamePanel extends JPanel implements KeyListener{
 	        		turtlePic = new ImageIcon("Data/turtle"+tCounter+".png").getImage();
 	        		turtlePic = turtlePic.getScaledInstance(turtlePic.getWidth(null)*2, turtlePic.getHeight(null)*2, Image.SCALE_SMOOTH);
 	        		o.setPic(turtlePic);
+	        	}
+
+	        	if(o.getType() == "snake")
+	        	{
+	        		snakePic = new ImageIcon("Data/snake"+sCounter+".png").getImage();
+	        		snakePic = snakePic.getScaledInstance(snakePic.getWidth(null)*2, snakePic.getHeight(null)*2, Image.SCALE_SMOOTH);
+	        		o.setPic(snakePic);
 	        	}
 	        }
 	    }
