@@ -65,10 +65,12 @@ class GamePanel extends JPanel implements KeyListener{
     private final int LEFT = 3;
     private Rectangle waterRect;
     private int spawnCounter = 2;
+    private int tCounter = 0;
+    private int sCounter = 0;
 
-    MovingItems truck, car, car2, car3, car4, log, turtle;
+    MovingItems truck, car, car2, car3, car4, log, turtle, snake;
 
-    Image truckPic, carPic, car2Pic, car3Pic, car4Pic, logPic, turtlePic;
+    Image truckPic, carPic, car2Pic, car3Pic, car4Pic, logPic, turtlePic, snakePic;
 
     LinkedList<MovingItems> moveList;
 
@@ -103,6 +105,7 @@ class GamePanel extends JPanel implements KeyListener{
         //spawnCars();
         //spawnLogs();
         t.start();
+        aniTimer.start();
 
     }
     /*
@@ -139,13 +142,16 @@ class GamePanel extends JPanel implements KeyListener{
             car4 = new MovingItems(459+rng, 423, -3, 0, "car", car4Pic);
             moveList.add(car4);
             //--------------------------water---------------------------------
-            log = new MovingItems(0, 203, 1, 0, "log", logPic);
-            moveList.add(log);
 
-            for(int i=0; i<rand.nextInt(4); i++){
+            for(int i=0; i<rand.nextInt(4)+2; i++){
                 turtle = new MovingItems(459+i*26, 236, -2, 0, "turtle", turtlePic);
                 moveList.add(turtle);
             }
+
+            log = new MovingItems(0, 203, 1, 0, "log", logPic);
+            moveList.add(log);
+
+
             //spawnCars();
             //spawnLogs();
             //spawnCounter -=1;
@@ -153,11 +159,23 @@ class GamePanel extends JPanel implements KeyListener{
         }
     });
 
-    Timer animationTimer = new Timer(500, new ActionListener()
-    {
-        public void actionPerformed(ActionEvent e)
-        {
-        }
+    Timer aniTimer = new Timer(500, new ActionListener() {
+	  	public void actionPerformed(ActionEvent e) {
+	  		tCounter+=1;
+	        	if(tCounter == 5)
+	        	{
+	        		tCounter = 0;
+	        	}
+			for(MovingItems o : moveList)
+	        {
+	        	if(o.getType() == "turtle")
+	        	{
+	        		turtlePic = new ImageIcon("Data/turtle"+tCounter+".png").getImage();
+	        		turtlePic = turtlePic.getScaledInstance(turtlePic.getWidth(null)*2, turtlePic.getHeight(null)*2, Image.SCALE_SMOOTH);
+	        		o.setPic(turtlePic);
+	        	}
+	        }
+	    }
     });
 
     public void addNotify()
