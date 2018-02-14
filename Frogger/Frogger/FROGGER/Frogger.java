@@ -64,8 +64,9 @@ class GamePanel extends JPanel implements KeyListener{
     private int spawnCounter = 2;
     private int tCounter = 0;
     private int sCounter = 0;
+    private boolean pos = true;
 
-    MovingItems truck, car, car2, car3, car4, log, turtle, snake;
+    MovingItems truck, car, car2, car3, car4, log, log2, log3, turtle, turtle2, snake;
 
     Image truckPic, carPic, car2Pic, car3Pic, car4Pic, logPic, turtlePic, snakePic;
 
@@ -91,7 +92,7 @@ class GamePanel extends JPanel implements KeyListener{
         car4Pic = car4Pic.getScaledInstance(car4Pic.getWidth(null)*2, car4Pic.getHeight(null)*2, Image.SCALE_SMOOTH);
         logPic = new ImageIcon("Data/log.png").getImage();
         logPic = logPic.getScaledInstance(logPic.getWidth(null)*2, logPic.getHeight(null)*2, Image.SCALE_SMOOTH);
-        turtlePic = new ImageIcon("Data/turtle0.png").getImage();
+        turtlePic = new ImageIcon("Data/turtle4.png").getImage();
         turtlePic = turtlePic.getScaledInstance(turtlePic.getWidth(null)*2, turtlePic.getHeight(null)*2, Image.SCALE_SMOOTH);
         snakePic = new ImageIcon("Data/snake0.png").getImage();
         snakePic = snakePic.getScaledInstance(snakePic.getWidth(null)*2, snakePic.getHeight(null)*2, Image.SCALE_SMOOTH);
@@ -141,19 +142,28 @@ class GamePanel extends JPanel implements KeyListener{
             car4 = new MovingItems(459+rng, 423, -3, 0, "car", car4Pic);
             moveList.add(car4);
 
-            snake = new MovingItems(0, 268, 3, 0, "snake", snakePic);
+            snake = new MovingItems(459, 268, -1, 0, "snake", snakePic);
             moveList.add(snake);
             //--------------------------water---------------------------------
 
             for(int i=0; i<rand.nextInt(4)+2; i++){
-                turtle = new MovingItems(459+i*26, 236, -2, 0, "turtle", turtlePic);
+                turtle = new MovingItems(459+i*26, 232, -1, 0, "turtle", turtlePic);
                 moveList.add(turtle);
             }
 
             log = new MovingItems(0, 203, 1, 0, "log", logPic);
             moveList.add(log);
 
+			log2 = new MovingItems(0, 203-32, 1, 0, "log", logPic);
+            moveList.add(log2);
 
+			for(int i=0; i<rand.nextInt(4)+2; i++){
+                turtle2 = new MovingItems(459+i*26, 136, -2, 0, "turtle", turtlePic);
+                moveList.add(turtle2);
+            }
+
+            log3 = new MovingItems(0, 108, 1, 0, "log", logPic);
+            moveList.add(log3);
             //spawnCars();
             //spawnLogs();
             //spawnCounter -=1;
@@ -161,13 +171,23 @@ class GamePanel extends JPanel implements KeyListener{
         }
     });
 
-    Timer aniTimer = new Timer(500, new ActionListener() {
+    Timer aniTimer = new Timer(200, new ActionListener() {
 	  	public void actionPerformed(ActionEvent e) {
-	  		tCounter+=1;
+	  		if(pos){
+	  			tCounter+=1;
+	  		}
+	  		else{
+	  			tCounter-=1;
+	  		}
+	  		//tCounter+=1;
 	  		sCounter+=1;
 	        	if(tCounter == 5)
 	        	{
-	        		tCounter = 0;
+	        		pos = false;
+	        		//tCounter = 0;
+	        	}
+	        	if(tCounter == 0){
+	        		pos = true;
 	        	}
 	        	if(sCounter == 3)
 	        	{
