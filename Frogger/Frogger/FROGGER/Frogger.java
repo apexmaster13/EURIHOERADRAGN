@@ -75,7 +75,7 @@ class GamePanel extends JPanel implements KeyListener{
     public GamePanel(Frogger m)
     {
         keys = new boolean[KeyEvent.KEY_LAST+1];
-        back = new ImageIcon("Data/background.png").getImage();
+        back = new ImageIcon("Data/background.jpg").getImage();
         back = back.getScaledInstance(460, 524, Image.SCALE_SMOOTH);
         //back = back.getScaledInstance(back.getWidth(null)*2,back.getHeight(null)*2, Image.SCALE_SMOOTH);
         frog = new ImageIcon("Data/frog-V.png").getImage();
