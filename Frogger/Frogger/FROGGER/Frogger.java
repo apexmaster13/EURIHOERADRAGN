@@ -169,7 +169,7 @@ class GamePanel extends JPanel implements KeyListener{
 	        	{
 	        		tCounter = 0;
 	        	}
-	        	if(sCounter == 4)
+	        	if(sCounter == 3)
 	        	{
 	        		sCounter = 0;
 	        	}
