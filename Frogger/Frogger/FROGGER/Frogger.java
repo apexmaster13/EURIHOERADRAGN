@@ -143,6 +143,7 @@ class GamePanel extends JPanel implements KeyListener{
 
             snake = new MovingItems(0, 268, 3, 0, "snake", snakePic);
             moveList.add(snake);
+
             //--------------------------water---------------------------------
 
             for(int i=0; i<rand.nextInt(4)+2; i++){
@@ -207,7 +208,8 @@ class GamePanel extends JPanel implements KeyListener{
                 System.out.println("hit");
                 player.moveX(o.getSpeedX());
             }
-            else{
+            else
+            {
                 //player.update();
                 return true;
             }
