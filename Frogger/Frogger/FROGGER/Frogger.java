@@ -152,9 +152,17 @@ class GamePanel extends JPanel implements KeyListener{
          
          //--------------------------water---------------------------------
          
-         for(int i=0; i<rand.nextInt(4)+2; i++){
-             turtle = new MovingItems(459+i*26, 232, -1, 0, "turtle", turtlePic);
-             moveList.add(turtle);
+        if(rand.nextInt(2)+1 == 1){
+             for(int i=0; i<rand.nextInt(4)+2; i++){
+                 turtle = new MovingItems(459+i*26, 236, -1, 0, "turtle", turtlePic);
+                 moveList.add(turtle);
+             }
+         }
+         else{
+             for(int i=0; i<rand.nextInt(4)+2; i++){
+                 turtle = new MovingItems(459+i*26, 236, -1, 0, "turtle1", turtlePic);
+                 moveList.add(turtle);
+             }
          }
          
          log = new MovingItems(0+rng, 203, 1, 0, "log", logPic);
@@ -163,9 +171,17 @@ class GamePanel extends JPanel implements KeyListener{
          log2 = new MovingItems(-30+rng, 203-32, 3, 0, "log", logPic);
          moveList.add(log2);
          
-         for(int i=0; i<rand.nextInt(4)+2; i++){
-             turtle2 = new MovingItems(459+i*26, 136, -2, 0, "turtle", turtlePic);
-             moveList.add(turtle2);
+         if(rand.nextInt(2)+1 == 1){
+             for(int i=0; i<rand.nextInt(4)+2; i++){
+                 turtle2 = new MovingItems(459+i*26, 136, -1, 0, "turtle", turtlePic);
+                 moveList.add(turtle2);
+             }
+         }
+         else{
+             for(int i=0; i<rand.nextInt(4)+2; i++){
+                 turtle2 = new MovingItems(459+i*26, 136, -1, 0, "turtle1", turtlePic);
+                 moveList.add(turtle2);
+             }
          }
          
          log3 = new MovingItems(0+rng, 108, 1, 0, "log", logPic);
@@ -188,12 +204,12 @@ class GamePanel extends JPanel implements KeyListener{
          else{
              tCounter-=1;
          }
-         //tCounter+=1;
+         
          sCounter+=1;
+         
          if(tCounter == 5)
          {
              pos = false;
-             //tCounter = 0;
          }
          if(tCounter == 0){
              pos = true;
@@ -210,30 +226,44 @@ class GamePanel extends JPanel implements KeyListener{
              player.update();  
              player.setDir(UP);
              frog = new ImageIcon("Data/frog-V.png").getImage();
-             frog = frog.getScaledInstance(24, 18, Image.SCALE_SMOOTH);
+             frog = frog.getScaledInstance(frog.getWidth(null)*2, frog.getHeight(null)*2, Image.SCALE_SMOOTH);
          }
          
          if(freeMove == false){
-              dCounter+=1;
-              frog = new ImageIcon("Data/hit"+dCounter+".png").getImage();
-              frog = frog.getScaledInstance(frog.getWidth(null)*2, frog.getHeight(null)*2, Image.SCALE_SMOOTH);
-              player.setPic(frog);
+             dCounter+=1;
+             if(player.getY()<250){
+                 frog = new ImageIcon("Data/hit"+dCounter+".png").getImage();
+                 frog = frog.getScaledInstance(frog.getWidth(null)*2, frog.getHeight(null)*2, Image.SCALE_SMOOTH);
+                 player.setPic(frog);
+             }
+             else{
+                 frog = new ImageIcon("Data/drown"+dCounter+".png").getImage();
+                 frog = frog.getScaledInstance(frog.getWidth(null)*2, frog.getHeight(null)*2, Image.SCALE_SMOOTH);
+                 player.setPic(frog);
+             }
          }
          
          for(MovingItems o : moveList)
          {
-             if(o.getType() == "turtle")
+             if(o.getType().equals("turtle"))
              {
                  turtlePic = new ImageIcon("Data/turtle"+tCounter+".png").getImage();
                  turtlePic = turtlePic.getScaledInstance(turtlePic.getWidth(null)*2, turtlePic.getHeight(null)*2, Image.SCALE_SMOOTH);
                  o.setPic(turtlePic);
              }
              
-             if(o.getType() == "snake")
+             if(o.getType().equals("snake"))
              {
                  snakePic = new ImageIcon("Data/snake"+sCounter+".png").getImage();
                  snakePic = snakePic.getScaledInstance(snakePic.getWidth(null)*2, snakePic.getHeight(null)*2, Image.SCALE_SMOOTH);
                  o.setPic(snakePic);
+             }
+             
+             if(o.getType().equals("turtle1"))
+             {
+                 turtlePic = new ImageIcon("Data/turtle"+sCounter+".png").getImage();
+                 turtlePic = turtlePic.getScaledInstance(turtlePic.getWidth(null)*2, turtlePic.getHeight(null)*2, Image.SCALE_SMOOTH);
+                 o.setPic(turtlePic);
              }
          }
      }
@@ -248,20 +278,24 @@ class GamePanel extends JPanel implements KeyListener{
  
  public boolean checkCollision(MovingItems o)
  {
-     if(player.getRect().intersects(waterRect)){
-         if(o.getRect().intersects(player.getRect()) == true && o.getType() == "log")
+     
+     if(player.getY()<250){
+         if(o.getRect().intersects(player.getRect()) == true && o.getType().equals("log") || o.getRect().intersects(player.getRect()) == true && o.getType().equals("turtle1") || o.getRect().intersects(player.getRect()) == true && o.getType().equals("turtle") && tCounter<4)
          {
-             System.out.println("hit");
+             //System.out.println("hit");
              player.moveX(o.getSpeedX());
+             return true;
          }
          else
          {
              //player.update();
+             //freeMove = false; 
+             //System.out.println("dead");
              return true;
          }
      }
      else{ //not on water
-         if(o.getRect().intersects(player.getRect()) == true && o.getType() == "car" || o.getRect().intersects(player.getRect()) == true && o.getType() == "snake")
+         if(o.getRect().intersects(player.getRect()) == true && o.getType().equals("car") || o.getRect().intersects(player.getRect()) == true && o.getType().equals("snake"))
          {
              freeMove = false;
              //player.update();
