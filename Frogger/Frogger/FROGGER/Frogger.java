@@ -19,7 +19,7 @@ public class Frogger extends JFrame implements ActionListener
 {
         Timer myTimer;
         MyMenu menu;
-        GamePanel game;
+        GamePanel game = new GamePanel(this);
 
 
         public Frogger() {
@@ -29,17 +29,13 @@ public class Frogger extends JFrame implements ActionListener
 
         myTimer = new Timer(10, this); // trigger every 10 ms
 
+
+        add(game);
         new MyMenu(this);
 
-        game = new GamePanel(this);
-        add(game);
 
         setResizable(false);
         setVisible(true);
-    }
-
-    public void start(){
-    myTimer.start();
     }
 
     public void actionPerformed(ActionEvent evt){
@@ -48,7 +44,13 @@ public class Frogger extends JFrame implements ActionListener
 
     }
 
-    public static void main(String[] arguments)
+    public void start()
+    {
+        myTimer.start();
+    }
+
+
+    public static void main(String[] args)
     {
         Frogger frame = new Frogger();
     }
@@ -73,7 +75,7 @@ class MyMenu extends JFrame implements ActionListener{
 		mPage.add(backLabel,1);					// The numbers I use when adding to the LayeredPane
 												// are just relative to one another. Higher numbers on top.
 		playBtn.setSize(100,30);
-		playBtn.setLocation(350,400);
+		playBtn.setLocation(233,275);
 		mPage.add(playBtn,2);
 
 		add(mPage);
