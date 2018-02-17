@@ -6,11 +6,11 @@ public class MenuEg3 extends JFrame implements ActionListener{
 
 	Timer myTimer;
 	GamePanel gamePage = new GamePanel();
-	
+
     public MenuEg3 ()
     {
 		super ("Menu Eg");
-		setSize (800, 600);
+		setSize (466, 553);
 		myTimer = new Timer(10,this);
 		add(gamePage);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,17 +36,17 @@ public class MenuEg3 extends JFrame implements ActionListener{
 class MyMenu extends JFrame implements ActionListener{
 	private MenuEg3 me3;
 	JButton playBtn = new JButton("Play");
-		
+
 	public MyMenu(MenuEg3 m){
 		super ("This menu is it's own Frame");
-		setSize (800, 600);
-		me3 = m;	
+		setSize (800,600);
+		me3 = m;
 		playBtn.addActionListener(this);
-		ImageIcon back = new ImageIcon("images/frogback.jpg");
+		ImageIcon back = new ImageIcon("data/menu.jpg");
 		JLabel backLabel = new JLabel(back);
 		JLayeredPane mPage=new JLayeredPane(); 	// LayeredPane allows my to control what shows on top
 		mPage.setLayout(null);
-		
+
 		backLabel.setSize(800,600);
 		backLabel.setLocation(0,0);
 		mPage.add(backLabel,1);					// The numbers I use when adding to the LayeredPane
@@ -54,15 +54,15 @@ class MyMenu extends JFrame implements ActionListener{
 		playBtn.setSize(100,30);
 		playBtn.setLocation(350,400);
 		mPage.add(playBtn,2);
-		
+
 		add(mPage);
 		setVisible(true);
 	}
-	
+
     public void actionPerformed(ActionEvent evt) {
     	setVisible(false);
 		me3.start();
-    }	
+    }
 }
 
 class GamePanel extends JPanel implements MouseListener{

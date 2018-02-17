@@ -15,22 +15,27 @@ import javax.swing.*;
 //import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class Frogger extends JFrame implements ActionListener{
-    Timer myTimer;
-    GamePanel game;
+public class Frogger extends JFrame implements ActionListener
+{
+        Timer myTimer;
+        MyMenu menu;
+        GamePanel game;
 
-    public Frogger() {
-    super("Frogger");
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setSize(466, 553);
 
-    myTimer = new Timer(10, this); // trigger every 10 ms
+        public Frogger() {
+        super("Frogger");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(466, 553);
 
-    game = new GamePanel(this);
-    add(game);
+        myTimer = new Timer(10, this); // trigger every 10 ms
 
-    setResizable(false);
-    setVisible(true);
+        new MyMenu(this);
+
+        game = new GamePanel(this);
+        add(game);
+
+        setResizable(false);
+        setVisible(true);
     }
 
     public void start(){
@@ -38,13 +43,46 @@ public class Frogger extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent evt){
-    game.move();
-    game.repaint();
+        game.move();
+        game.repaint();
+
     }
 
     public static void main(String[] arguments)
     {
-    Frogger frame = new Frogger();
+        Frogger frame = new Frogger();
+    }
+}
+
+class MyMenu extends JFrame implements ActionListener{
+	private Frogger me3;
+	JButton playBtn = new JButton("Play");
+
+	public MyMenu(Frogger m){
+		super ("Frogger");
+		setSize (466, 553);
+		me3 = m;
+		playBtn.addActionListener(this);
+		ImageIcon back = new ImageIcon("data/menu.jpg");
+		JLabel backLabel = new JLabel(back);
+		JLayeredPane mPage=new JLayeredPane(); 	// LayeredPane allows my to control what shows on top
+		mPage.setLayout(null);
+
+		backLabel.setSize(466, 553);
+		backLabel.setLocation(0,0);
+		mPage.add(backLabel,1);					// The numbers I use when adding to the LayeredPane
+												// are just relative to one another. Higher numbers on top.
+		playBtn.setSize(100,30);
+		playBtn.setLocation(350,400);
+		mPage.add(playBtn,2);
+
+		add(mPage);
+		setVisible(true);
+	}
+
+    public void actionPerformed(ActionEvent evt) {
+    	setVisible(false);
+		me3.start();
     }
 }
 
@@ -78,7 +116,7 @@ class GamePanel extends JPanel implements KeyListener{
  public GamePanel(Frogger m)
  {
      keys = new boolean[KeyEvent.KEY_LAST+1];
-     back = new ImageIcon("Data/background.jpg").getImage();
+     back = new ImageIcon("Data/back.jpg").getImage();
      back = back.getScaledInstance(460, 524, Image.SCALE_SMOOTH);
      //back = back.getScaledInstance(back.getWidth(null)*2,back.getHeight(null)*2, Image.SCALE_SMOOTH);
      frog = new ImageIcon("Data/frog-V.png").getImage();
