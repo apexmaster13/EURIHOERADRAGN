@@ -22,8 +22,7 @@ public class MovingItems
         this.dy = dy;
         this.pic = pic;
         this.type = type;
-       // this.width = width;
-        //this.height = height;
+
     }
 
     public void setSpeed(int xspeed, int yspeed)
@@ -116,22 +115,21 @@ public class MovingItems
         return width;
     }
 
-    public int getSpeedX(){
+    public int getSpeedX()
+    {
         return dx;
     }
 
-    public String getType(){
+    public String getType()
+    {
         return type;
     }
-
+    //-----------------------------------------------------------------------------------
     public void draw(Graphics g, Component c)
     {
         dh = c.getHeight();
         dw = c.getWidth();
-        //g.drawImage(pic , x, y, null);
-        //g.drawImage(pic.getImage(), x, y%c.getHeight(), width, height, c);
         g.drawImage(pic, x, y, c);
-        //g.drawRect(x, y%c.getHeight(), width, height);
         g.drawRect(x, y, pic.getWidth(null), pic.getHeight(null));
     }
 }
