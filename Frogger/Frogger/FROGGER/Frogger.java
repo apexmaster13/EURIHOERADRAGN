@@ -59,7 +59,8 @@ public class Frogger extends JFrame implements ActionListener
 
 class MyMenu extends JFrame implements ActionListener{
 	private Frogger me3;
-	JButton playBtn = new JButton("Play");
+    JButton playBtn = new JButton();
+
 
 	public MyMenu(Frogger m){
 		super ("Frogger");
@@ -69,15 +70,18 @@ class MyMenu extends JFrame implements ActionListener{
         ImageIcon back = new ImageIcon("Data/menu.png");
         //back = back.getScaledInstance(460, 524, Image.SCALE_SMOOTH);
 		JLabel backLabel = new JLabel(back);
-		JLayeredPane mPage=new JLayeredPane(); 	// LayeredPane allows my to control what shows on top
+		JLayeredPane mPage=new JLayeredPane();
 		mPage.setLayout(null);
 
 		backLabel.setSize(466, 524);
 		backLabel.setLocation(0,0);
-		mPage.add(backLabel,1);					// The numbers I use when adding to the LayeredPane
-												// are just relative to one another. Higher numbers on top.
-		playBtn.setSize(100,30);
-		playBtn.setLocation(213,275);
+        mPage.add(backLabel,1);
+
+
+        //playBtn.setBackground(new Color(0,0,0));
+        playBtn.setOpaque(false);
+        playBtn.setSize(100,30);
+		playBtn.setLocation(190,270);
 		mPage.add(playBtn,2);
 
 		add(mPage);
