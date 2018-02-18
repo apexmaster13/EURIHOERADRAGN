@@ -26,16 +26,16 @@ public class Frogger extends JFrame implements ActionListener
         super("Frogger");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(466, 553);
-
+        add(game);
         myTimer = new Timer(10, this); // trigger every 10 ms
 
 
-        add(game);
+
         new MyMenu(this);
 
 
         setResizable(false);
-        setVisible(true);
+
     }
 
     public void actionPerformed(ActionEvent evt){
@@ -47,6 +47,7 @@ public class Frogger extends JFrame implements ActionListener
     public void start()
     {
         myTimer.start();
+        setVisible(true);
     }
 
 
@@ -65,12 +66,13 @@ class MyMenu extends JFrame implements ActionListener{
 		setSize (466, 553);
 		me3 = m;
 		playBtn.addActionListener(this);
-		ImageIcon back = new ImageIcon("data/menu.jpg");
+        ImageIcon back = new ImageIcon("Data/menu.png");
+        //back = back.getScaledInstance(460, 524, Image.SCALE_SMOOTH);
 		JLabel backLabel = new JLabel(back);
 		JLayeredPane mPage=new JLayeredPane(); 	// LayeredPane allows my to control what shows on top
 		mPage.setLayout(null);
 
-		backLabel.setSize(466, 553);
+		backLabel.setSize(466, 524);
 		backLabel.setLocation(0,0);
 		mPage.add(backLabel,1);					// The numbers I use when adding to the LayeredPane
 												// are just relative to one another. Higher numbers on top.

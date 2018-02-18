@@ -25,11 +25,11 @@ public class MenuEg3 extends JFrame implements ActionListener{
 
 	public void start(){
 		myTimer.start();
-		setVisible(true);9
+		setVisible(true);
 	}
 
     public static void main(String[] args){
-		MenuEg3 menuEg = new MenuEg3();
+		MenuEg3 menuEg3 = new MenuEg3();
     }
 }
 
