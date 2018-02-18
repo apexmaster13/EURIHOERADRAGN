@@ -2,6 +2,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.*;
 
+
+
 public class MovingItems
 {
     private int dx, dy, dh, dw, width, height, x, srtX, y;
@@ -47,15 +49,15 @@ public class MovingItems
         }
         /*
         rng = rand.nextInt(3)+1;
-        
+
         if(srtX == 0 && x<=459){
             x += dx;
         }
-        
+
         else if(srtX == 459 && x>=-10){
             x += dx;
         }
-        
+
         else if(srtX == 459 && x<-10){
             rng = rand.nextInt(3)+1;
             if(rng == 1){
@@ -117,7 +119,7 @@ public class MovingItems
     public int getSpeedX(){
         return dx;
     }
-    
+
     public String getType(){
         return type;
     }
