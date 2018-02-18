@@ -25,7 +25,7 @@ public class MenuEg3 extends JFrame implements ActionListener{
 
 	public void start(){
 		myTimer.start();
-		setVisible(true);
+		setVisible(true);9
 	}
 
     public static void main(String[] args){

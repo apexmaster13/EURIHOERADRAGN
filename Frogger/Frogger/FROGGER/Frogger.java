@@ -75,7 +75,7 @@ class MyMenu extends JFrame implements ActionListener{
 		mPage.add(backLabel,1);					// The numbers I use when adding to the LayeredPane
 												// are just relative to one another. Higher numbers on top.
 		playBtn.setSize(100,30);
-		playBtn.setLocation(233,275);
+		playBtn.setLocation(213,275);
 		mPage.add(playBtn,2);
 
 		add(mPage);
@@ -104,7 +104,7 @@ class GamePanel extends JPanel implements KeyListener{
  private int spawnCounter = 2;
  private int tCounter = 0;
  private int sCounter = 0;
-  private int dCounter = 0;
+ private int dCounter = 0;
  private boolean pos = true;
  private boolean freeMove = true;
 
@@ -192,14 +192,18 @@ class GamePanel extends JPanel implements KeyListener{
 
          //--------------------------water---------------------------------
 
-        if(rand.nextInt(2)+1 == 1){
-             for(int i=0; i<rand.nextInt(4)+2; i++){
+        if(rand.nextInt(2)+1 == 1)
+        {
+             for(int i=0; i<rand.nextInt(4)+2; i++)
+             {
                  turtle = new MovingItems(459+i*26, 236, -1, 0, "turtle", turtlePic);
                  moveList.add(turtle);
              }
          }
-         else{
-             for(int i=0; i<rand.nextInt(4)+2; i++){
+         else
+         {
+             for(int i=0; i<rand.nextInt(4)+2; i++)
+             {
                  turtle = new MovingItems(459+i*26, 236, -1, 0, "turtle1", turtlePic);
                  moveList.add(turtle);
              }
