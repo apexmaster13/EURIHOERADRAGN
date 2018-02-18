@@ -40,46 +40,6 @@ public class MovingItems
     public void update()
     {
         x += dx;
-        /*if(x>-30 && x<480){
-            x += dx;
-        }
-        else{
-            x = srtX;
-        }
-        /*
-        rng = rand.nextInt(3)+1;
-
-        if(srtX == 0 && x<=459){
-            x += dx;
-        }
-
-        else if(srtX == 459 && x>=-10){
-            x += dx;
-        }
-
-        else if(srtX == 459 && x<-10){
-            rng = rand.nextInt(3)+1;
-            if(rng == 1){
-                x = srtX;
-            }
-            else if(rng == 2){
-                x = srtX + 50;
-            }
-            else{
-                x = srtX + 100;
-            }
-        }
-        else if(srtX == 0 && x>459){
-            if(rng == 1){
-                x = srtX;
-            }
-            else if(rng == 2){
-                x = srtX - 50;
-            }
-            else{
-                x = srtX - 100;
-            }
-        }*/
     }
 
      public void setPic(Image p)
