@@ -147,7 +147,7 @@ class GamePanel extends JPanel implements KeyListener{
      frog = new ImageIcon("Data/frog-V2.png").getImage();
      frog = frog.getScaledInstance(24, 18, Image.SCALE_SMOOTH);
      player.setPic(frog);
-     
+
      moveList = new LinkedList<MovingItems>();
 
      mainFrame = m;
@@ -162,7 +162,7 @@ class GamePanel extends JPanel implements KeyListener{
      aniTimer.start();
 
  }
- 
+
  Timer spawnTimer = new Timer(2000, new ActionListener() {
      public void actionPerformed(ActionEvent e) {
          rng = rand.nextInt(90);
@@ -230,8 +230,8 @@ class GamePanel extends JPanel implements KeyListener{
          moveList.add(snake);
      }
  });
-  
-  
+
+
   Timer moveTimer = new Timer(100, new ActionListener() {
      public void actionPerformed(ActionEvent e) {
          if(player.getDir() == UP){
@@ -265,7 +265,7 @@ class GamePanel extends JPanel implements KeyListener{
          }
      }
  });
-  
+
 
  Timer aniTimer = new Timer(200, new ActionListener() {
      public void actionPerformed(ActionEvent e) {
@@ -330,7 +330,7 @@ class GamePanel extends JPanel implements KeyListener{
                  snakePic = snakePic.getScaledInstance(snakePic.getWidth(null)*2, snakePic.getHeight(null)*2, Image.SCALE_SMOOTH);
                  o.setPic(snakePic);
              }
-             
+
              if(o.getType().equals("turtle1"))
              {
                  turtlePic = new ImageIcon("Data/turtle"+sCounter+".png").getImage();
@@ -349,7 +349,7 @@ class GamePanel extends JPanel implements KeyListener{
  }
 
  public boolean checkCollision(MovingItems o)
- {     
+ {
      if(player.getY()<250){
          if(o.getRect().intersects(player.getRect()) == true && o.getType().equals("log") || o.getRect().intersects(player.getRect()) == true && o.getType().equals("turtle1") || o.getRect().intersects(player.getRect()) == true && o.getType().equals("turtle") && tCounter<4)
          {
