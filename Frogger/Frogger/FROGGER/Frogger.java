@@ -108,9 +108,10 @@ class GamePanel extends JPanel implements KeyListener{
  private final int LEFT = 3;
  private Rectangle waterRect;
  private int spawnCounter = 2;
- private int tCounter = 0;
- private int sCounter = 0;
- private int dCounter = 0;
+ //private int tCounter = 0;
+ //private int sCounter = 0;
+ //private int dCounter = 0;
+ private int tCounter, sCounter, dCounter, moveCounter;
  private boolean pos = true;
  private boolean freeMove = true;
 
@@ -127,7 +128,6 @@ class GamePanel extends JPanel implements KeyListener{
      back = new ImageIcon("Data/back.jpg").getImage();
      back = back.getScaledInstance(460, 524, Image.SCALE_SMOOTH);
      //back = back.getScaledInstance(back.getWidth(null)*2,back.getHeight(null)*2, Image.SCALE_SMOOTH);
-     frog = new ImageIcon("Data/frog-V.png").getImage();
      truckPic = new ImageIcon("Data/truck.png").getImage();
      truckPic = truckPic.getScaledInstance(truckPic.getWidth(null)*2, truckPic.getHeight(null)*2, Image.SCALE_SMOOTH);
      carPic = new ImageIcon("Data/car.png").getImage();
@@ -144,7 +144,10 @@ class GamePanel extends JPanel implements KeyListener{
      turtlePic = turtlePic.getScaledInstance(turtlePic.getWidth(null)*2, turtlePic.getHeight(null)*2, Image.SCALE_SMOOTH);
      snakePic = new ImageIcon("Data/snake0.png").getImage();
      snakePic = snakePic.getScaledInstance(snakePic.getWidth(null)*2, snakePic.getHeight(null)*2, Image.SCALE_SMOOTH);
+     frog = new ImageIcon("Data/frog-V2.png").getImage();
      frog = frog.getScaledInstance(24, 18, Image.SCALE_SMOOTH);
+     player.setPic(frog);
+     
      moveList = new LinkedList<MovingItems>();
 
      mainFrame = m;
@@ -159,21 +162,7 @@ class GamePanel extends JPanel implements KeyListener{
      aniTimer.start();
 
  }
-    /*
-    Timer t = new Timer(rng, new ActionListener() {
-    public void actionPerformed(ActionEvent e) {
-    spawnCars();
-    spawnLogs();
-    rng = rand.nextInt(1225) + 1200;
-    spawnCounter -=1;
-    if(spawnCounter==0){
-    System.out.println("stopped");
-    t.stop();
-    spawnCounter = 3;
-    }
-    }
-    });*/
-
+ 
  Timer spawnTimer = new Timer(2000, new ActionListener() {
      public void actionPerformed(ActionEvent e) {
          rng = rand.nextInt(90);
@@ -198,18 +187,14 @@ class GamePanel extends JPanel implements KeyListener{
 
          //--------------------------water---------------------------------
 
-        if(rand.nextInt(2)+1 == 1)
-        {
-             for(int i=0; i<rand.nextInt(4)+2; i++)
-             {
+        if(rand.nextInt(2)+1 == 1){
+             for(int i=0; i<rand.nextInt(4)+2; i++){
                  turtle = new MovingItems(459+i*26, 236, -1, 0, "turtle", turtlePic);
                  moveList.add(turtle);
              }
          }
-         else
-         {
-             for(int i=0; i<rand.nextInt(4)+2; i++)
-             {
+         else{
+             for(int i=0; i<rand.nextInt(4)+2; i++){
                  turtle = new MovingItems(459+i*26, 236, -1, 0, "turtle1", turtlePic);
                  moveList.add(turtle);
              }
@@ -245,6 +230,42 @@ class GamePanel extends JPanel implements KeyListener{
          moveList.add(snake);
      }
  });
+  
+  
+  Timer moveTimer = new Timer(100, new ActionListener() {
+     public void actionPerformed(ActionEvent e) {
+         if(player.getDir() == UP){
+             player.moveY(-11);
+             frog = new ImageIcon("Data/frog-V"+moveCounter+".png").getImage();
+             frog = frog.getScaledInstance(frog.getWidth(null)*2, frog.getHeight(null)*2, Image.SCALE_SMOOTH);
+             player.setPic(frog);
+         }
+         if(player.getDir() == DOWN){
+             player.moveY(11);
+             frog = new ImageIcon("Data/frog-V"+moveCounter+".png").getImage();
+             frog = frog.getScaledInstance(frog.getWidth(null)*2, frog.getHeight(null)*2, Image.SCALE_SMOOTH);
+             player.setPic(frog);
+         }
+         if(player.getDir() == RIGHT){
+             player.moveX(11);
+             frog = new ImageIcon("Data/frog-H"+moveCounter+".png").getImage();
+             frog = frog.getScaledInstance(frog.getWidth(null)*2, frog.getHeight(null)*2, Image.SCALE_SMOOTH);
+             player.setPic(frog);
+         }
+         if(player.getDir() == LEFT){
+             player.moveX(-11);
+             frog = new ImageIcon("Data/frog-H"+moveCounter+".png").getImage();
+             frog = frog.getScaledInstance(frog.getWidth(null)*2, frog.getHeight(null)*2, Image.SCALE_SMOOTH);
+             player.setPic(frog);
+         }
+         moveCounter+=1;
+         if(moveCounter == 3){
+             moveCounter = 0;
+             moveTimer.stop();
+         }
+     }
+ });
+  
 
  Timer aniTimer = new Timer(200, new ActionListener() {
      public void actionPerformed(ActionEvent e) {
@@ -275,8 +296,9 @@ class GamePanel extends JPanel implements KeyListener{
              freeMove = true;
              player.update();
              player.setDir(UP);
-             frog = new ImageIcon("Data/frog-V.png").getImage();
+             frog = new ImageIcon("Data/frog-V2.png").getImage();
              frog = frog.getScaledInstance(frog.getWidth(null)*2, frog.getHeight(null)*2, Image.SCALE_SMOOTH);
+             player.setPic(frog);
          }
 
          if(freeMove == false){
@@ -308,7 +330,7 @@ class GamePanel extends JPanel implements KeyListener{
                  snakePic = snakePic.getScaledInstance(snakePic.getWidth(null)*2, snakePic.getHeight(null)*2, Image.SCALE_SMOOTH);
                  o.setPic(snakePic);
              }
-
+             
              if(o.getType().equals("turtle1"))
              {
                  turtlePic = new ImageIcon("Data/turtle"+sCounter+".png").getImage();
@@ -327,8 +349,7 @@ class GamePanel extends JPanel implements KeyListener{
  }
 
  public boolean checkCollision(MovingItems o)
- {
-
+ {     
      if(player.getY()<250){
          if(o.getRect().intersects(player.getRect()) == true && o.getType().equals("log") || o.getRect().intersects(player.getRect()) == true && o.getType().equals("turtle1") || o.getRect().intersects(player.getRect()) == true && o.getType().equals("turtle") && tCounter<4)
          {
@@ -344,7 +365,7 @@ class GamePanel extends JPanel implements KeyListener{
              return true;
          }
      }
-     else{ //not on water
+     if(player.getY()>250){ //not on water
          if(o.getRect().intersects(player.getRect()) == true && o.getType().equals("car") || o.getRect().intersects(player.getRect()) == true && o.getType().equals("snake"))
          {
              freeMove = false;
@@ -352,39 +373,44 @@ class GamePanel extends JPanel implements KeyListener{
              return true;
          }
      }
-
-    return false;
-    }
+     return true;
+ }
 
  public void move()
  {
-     if(allowMove && freeMove){
-         if(keys[KeyEvent.VK_RIGHT] && player.getX()!= 426){
-             player.moveX(32);
-             player.setDir(RIGHT);
-             frog = new ImageIcon("Data/frog-H.png").getImage();
-             frog = frog.getScaledInstance(18, 24, Image.SCALE_SMOOTH);
+     if(!moveTimer.isRunning()){
+         if(allowMove && freeMove){
+             if(keys[KeyEvent.VK_RIGHT] && player.getX()!= 426){
+                 //player.moveX(32);
+                 player.setDir(RIGHT);
+                 moveTimer.start();
+                 //frog = new ImageIcon("Data/frog-H.png").getImage();
+                 //frog = frog.getScaledInstance(18, 24, Image.SCALE_SMOOTH);
+             }
+             if(keys[KeyEvent.VK_LEFT] && player.getX() != 10){
+                 //player.moveX(-32);
+                 player.setDir(LEFT);
+                 moveTimer.start();
+                 //frog = new ImageIcon("Data/frog-H.png").getImage();
+                 //frog = frog.getScaledInstance(18, 24, Image.SCALE_SMOOTH);
+             }
+             if(keys[KeyEvent.VK_UP] && player.getY() != 108){
+                 //player.moveY(-32);
+                 player.setDir(UP);
+                 moveTimer.start();
+                 //frog = new ImageIcon("Data/frog-V.png").getImage();
+                 //frog = frog.getScaledInstance(24, 18, Image.SCALE_SMOOTH);
+             }
+             if(keys[KeyEvent.VK_DOWN] && player.getY()!=460){
+                 //player.moveY(32);
+                 player.setDir(DOWN);
+                 moveTimer.start();
+                 //frog = new ImageIcon("Data/frog-V.png").getImage();
+                 //frog = frog.getScaledInstance(24, 18, Image.SCALE_SMOOTH);
+             }
+             allowMove = false;
+             //player.setPic(frog);
          }
-         if(keys[KeyEvent.VK_LEFT] && player.getX() != 10){
-             player.moveX(-32);
-             player.setDir(LEFT);
-             frog = new ImageIcon("Data/frog-H.png").getImage();
-             frog = frog.getScaledInstance(18, 24, Image.SCALE_SMOOTH);
-         }
-         if(keys[KeyEvent.VK_UP] && player.getY() != 108){
-             player.moveY(-32);
-             player.setDir(UP);
-             frog = new ImageIcon("Data/frog-V.png").getImage();
-             frog = frog.getScaledInstance(24, 18, Image.SCALE_SMOOTH);
-         }
-         if(keys[KeyEvent.VK_DOWN] && player.getY()!=460){
-             player.moveY(32);
-             player.setDir(DOWN);
-             frog = new ImageIcon("Data/frog-V.png").getImage();
-             frog = frog.getScaledInstance(24, 18, Image.SCALE_SMOOTH);
-         }
-         allowMove = false;
-         player.setPic(frog);
      }
  }
 
