@@ -47,7 +47,7 @@ class GamePanel extends JPanel implements KeyListener{
         logPic = logPic.getScaledInstance(logPic.getWidth(null)*2, logPic.getHeight(null)*2, Image.SCALE_SMOOTH);
         turtlePic = new ImageIcon("images/turtle/turtle4.png").getImage();
         turtlePic = turtlePic.getScaledInstance(turtlePic.getWidth(null)*2, turtlePic.getHeight(null)*2, Image.SCALE_SMOOTH);
-        pFrogPic = new ImageIcon("images/frog/pointFrog.png").getImage();
+        pFrogPic = new ImageIcon("images/frog/blankFrog.png").getImage();
         pFrogPic = pFrogPic.getScaledInstance(pFrogPic.getWidth(null)*2, pFrogPic.getHeight(null)*2, Image.SCALE_SMOOTH);
         snakePic = new ImageIcon("images/snake/snake0.png").getImage();
         snakePic = snakePic.getScaledInstance(snakePic.getWidth(null)*2, snakePic.getHeight(null)*2, Image.SCALE_SMOOTH);
@@ -148,6 +148,14 @@ class GamePanel extends JPanel implements KeyListener{
     Timer moveTimer = new Timer(70, new ActionListener() {
         public void actionPerformed(ActionEvent e) {
             if(freeMove){
+                for(MovingItems o : moveList)
+                    {
+                        if(player.getRect().intersects(o.getRect()) && o.getType().equals("point")){
+                            pFrogPic = new ImageIcon("images/frog/pointFrog.png").getImage();
+                            pFrogPic = pFrogPic.getScaledInstance(pFrogPic.getWidth(null)*2, pFrogPic.getHeight(null)*2, Image.SCALE_SMOOTH);
+                            o.setPic(pFrogPic);
+                        }
+                    }
                 moveSpace = 11;
                 if(moveCounter == 2){
                     moveSpace = 10;
@@ -181,6 +189,9 @@ class GamePanel extends JPanel implements KeyListener{
                     moveCounter = 0;
                     moveTimer.stop();
                 }
+            }
+            else{
+                moveTimer.stop();
             }
         }
     });
@@ -310,7 +321,8 @@ class GamePanel extends JPanel implements KeyListener{
                     player.setDir(LEFT);
                     moveTimer.start();
                 }
-                if(keys[KeyEvent.VK_UP] && player.getY() != 108){
+                // && player.getY() != 108
+                if(keys[KeyEvent.VK_UP]){
                     player.setDir(UP);
                     moveTimer.start();
                 }
