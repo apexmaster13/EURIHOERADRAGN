@@ -30,7 +30,7 @@ class GamePanel extends JPanel implements KeyListener{
 
     MovingItems truck, car, car2, car3, car4, log, log2, log3, turtle, turtle2, snake, pFrog;
 
-    Image back, frog, pFrogPic, pic, logPic, turtlePic, snakePic, lifePic, win;
+    Image back, frog, pFrogPic, pic, logPic, turtlePic, snakePic, lifePic, winSc;
 
     LinkedList<MovingItems> moveList;
 
@@ -47,8 +47,8 @@ class GamePanel extends JPanel implements KeyListener{
         }
         logPic = new ImageIcon("images/logs/log0.png").getImage();
         logPic = logPic.getScaledInstance(logPic.getWidth(null)*2, logPic.getHeight(null)*2, Image.SCALE_SMOOTH);
-        win = new ImageIcon("images/win.png").getImage();
-        win = logPic.getScaledInstance(win.getWidth(null)*2, win.getHeight(null)*2, Image.SCALE_SMOOTH);
+        winSc = new ImageIcon("images/win.png").getImage();
+        winSc = logPic.getScaledInstance(winSc.getWidth(null)*2, winSc.getHeight(null)*2, Image.SCALE_SMOOTH);
         turtlePic = new ImageIcon("images/turtle/turtle4.png").getImage();
         turtlePic = turtlePic.getScaledInstance(turtlePic.getWidth(null)*2, turtlePic.getHeight(null)*2, Image.SCALE_SMOOTH);
         pFrogPic = new ImageIcon("images/frog/blankFrog.png").getImage();
@@ -395,7 +395,7 @@ class GamePanel extends JPanel implements KeyListener{
 
          if(points == 100)
          {
-             g.drawImage(win, 0, 100, null);
+             g.drawImage(winSc, 0, 100, null);
          }
         //System.out.println(player.getX()+" "+player.getY());
 
