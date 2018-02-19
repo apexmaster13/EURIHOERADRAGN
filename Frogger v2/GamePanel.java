@@ -380,6 +380,12 @@ class GamePanel extends JPanel implements KeyListener{
         if(player.getX()<-10 || player.getX()>440){
             freeMove = false;
         }
+        if (points>=500)
+        {
+            winPic = new ImageIcon("images/menu.png").getImage();
+            g.drawImage(winPic, 100, 200, this);
+
+        }
 
         for(MovingItems o : moveList)
         {
