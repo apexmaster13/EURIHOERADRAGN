@@ -50,7 +50,7 @@ class GamePanel extends JPanel implements KeyListener{
         bLogPic = new ImageIcon("images/logs/log1.png").getImage();
         bLogPic = bLogPic.getScaledInstance(bLogPic.getWidth(null)*2, bLogPic.getHeight(null)*2, Image.SCALE_SMOOTH);
         winPic = new ImageIcon("images/win.png").getImage();
-        winPic = logPic.getScaledInstance(winPic.getWidth(null)*2, winPic.getHeight(null)*2, Image.SCALE_SMOOTH);
+        winPic = winPic.getScaledInstance(winPic.getWidth(null)*2, winPic.getHeight(null)*2, Image.SCALE_SMOOTH);
         turtlePic = new ImageIcon("images/turtle/turtle4.png").getImage();
         turtlePic = turtlePic.getScaledInstance(turtlePic.getWidth(null)*2, turtlePic.getHeight(null)*2, Image.SCALE_SMOOTH);
         pFrogPic = new ImageIcon("images/frog/blankFrog.png").getImage();
