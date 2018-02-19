@@ -8,6 +8,13 @@ import javax.swing.Timer;
 //import java.awt.Graphics;
 //import java.awt.Image;
 
+import java.io.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
+import sun.audio.*;
+
 public class Frogger extends JFrame implements ActionListener
 {
         Timer myTimer;
@@ -23,7 +30,20 @@ public class Frogger extends JFrame implements ActionListener
 
         new MyMenu(this);
 
+        try
+        {
+            Clip clip = AudioSystem.getClip();
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(new FileInputStream("Sound/main.wav"));
+            clip.open(inputStream);
+            clip.start();
+        }
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+
         setResizable(false);
+
     }
 
     public void actionPerformed(ActionEvent evt){
@@ -36,6 +56,8 @@ public class Frogger extends JFrame implements ActionListener
         myTimer.start();
         setVisible(true);
     }
+
+
 
 
     public static void main(String[] args)
