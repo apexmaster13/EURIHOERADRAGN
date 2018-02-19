@@ -438,7 +438,7 @@ class GamePanel extends JPanel implements KeyListener{
          {
              g.drawImage(winPic, 0, 100, null);
          }
-         if(lives<1||timer==0)
+         if(lives<1||timerLength==0)
          {
             g.drawImage(losePic, 0, 100, null);
          }
