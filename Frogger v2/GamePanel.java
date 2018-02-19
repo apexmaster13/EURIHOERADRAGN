@@ -162,11 +162,13 @@ class GamePanel extends JPanel implements KeyListener{
                         if(player.getY()<108 && !player.getRect().intersects(o.getRect()) && o.getType()!="point"){
                             freeMove = false;
                         }
-                        /*if (points>=500)
+                        if (points>=500)
                         {
                             winPic = new ImageIcon("images/menu.png").getImage();
+                            winPic.setLocation(100,400);
+                            this.winPic.setVisible(true);
 
-                        }*/
+                        }
                     }
                 moveSpace = 11;
                 if(moveCounter == 2){
