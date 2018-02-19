@@ -21,7 +21,7 @@ class GamePanel extends JPanel implements KeyListener{
     private final int LEFT = 3;
     private Rectangle waterRect;
     private int spawnCounter = 2;
-    private int tCounter, sCounter, dCounter, moveCounter, moveSpace;
+    private int tCounter, sCounter, dCounter, moveCounter, moveSpace, points;
     private boolean pos = true;
     private boolean freeMove = true;
     private ArrayList<Image> carPics = new ArrayList<Image>();
@@ -154,6 +154,13 @@ class GamePanel extends JPanel implements KeyListener{
                             pFrogPic = new ImageIcon("images/frog/pointFrog.png").getImage();
                             pFrogPic = pFrogPic.getScaledInstance(pFrogPic.getWidth(null)*2, pFrogPic.getHeight(null)*2, Image.SCALE_SMOOTH);
                             o.setPic(pFrogPic);
+                            points+=100;
+                            player.update();
+                            moveTimer.stop();
+                            
+                        }
+                        if(player.getY()<108 && !player.getRect().intersects(o.getRect()) && o.getType()!="point"){
+                            freeMove = false;
                         }
                     }
                 moveSpace = 11;
