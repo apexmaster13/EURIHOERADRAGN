@@ -131,9 +131,9 @@ class GamePanel extends JPanel implements KeyListener{
             log = new MovingItems(-30-rng, 203, 2, 0, "log", logPic);
             moveList.add(log);
 
-            //rng = rand.nextInt(90);
-            //log2 = new MovingItems(-170, 171, 1, 0, "log", bLogPic);
-            //moveList.add(log2);
+            /*rng = rand.nextInt(90);
+            log2 = new MovingItems(-170, 171, 1, 0, "log", bLogPic);
+            moveList.add(log2);*/
 
             rng = rand.nextInt(90);
             if(rand.nextInt(3)+1 == 1){
