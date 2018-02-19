@@ -28,7 +28,7 @@ class GamePanel extends JPanel implements KeyListener{
 
     MovingItems truck, car, car2, car3, car4, log, log2, log3, turtle, turtle2, snake, pFrog;
 
-    Image back, frog, pFrogPic, pic, logPic, turtlePic, snakePic;
+    Image back, frog, pFrogPic, pic, logPic, turtlePic, snakePic, winPic;
 
     LinkedList<MovingItems> moveList;
 
@@ -162,13 +162,7 @@ class GamePanel extends JPanel implements KeyListener{
                         if(player.getY()<108 && !player.getRect().intersects(o.getRect()) && o.getType()!="point"){
                             freeMove = false;
                         }
-                        if (points>=500)
-                        {
-                            winPic = new ImageIcon("images/menu.png").getImage();
-                            winPic.setLocation(100,400);
-                            this.winPic.setVisible(true);
 
-                        }
                     }
                 moveSpace = 11;
                 if(moveCounter == 2){
