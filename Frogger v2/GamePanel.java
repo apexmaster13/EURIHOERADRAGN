@@ -432,12 +432,15 @@ class GamePanel extends JPanel implements KeyListener{
             g.drawImage(lifePic, 8+i*16, 490, null);
         }
 
-         if(points == 500){
+         if(points == 500)
+         {
              g.drawImage(winPic, 0, 100, null);
          }
+         if(lives<1)
         //System.out.println(player.getX()+" "+player.getY());
 
-        if(player.getX()<-10 || player.getX()>440){
+        if(player.getX()<-10 || player.getX()>440)
+        {
             freeMove = false;
         }
         if(timerLength>0){

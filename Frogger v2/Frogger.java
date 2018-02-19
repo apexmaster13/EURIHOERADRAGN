@@ -30,7 +30,7 @@ public class Frogger extends JFrame implements ActionListener
 
         new MyMenu(this);
 
-        try
+        /*try
         {
             Clip clip = AudioSystem.getClip();
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(new FileInputStream("Sound/main.wav"));
@@ -39,7 +39,7 @@ public class Frogger extends JFrame implements ActionListener
         }
         catch (Exception e) {
             System.err.println(e.getMessage());
-        }
+        }*/
 
 
         setResizable(false);
