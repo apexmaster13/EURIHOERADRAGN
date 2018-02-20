@@ -40,10 +40,6 @@ class MyMenu extends JFrame implements ActionListener{
         add(mPage);
         setVisible(true);
 
-
-
-
-
     }
 
     public void actionPerformed(ActionEvent evt) {

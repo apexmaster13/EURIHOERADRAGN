@@ -9,6 +9,8 @@ import javax.swing.*;
 import javax.swing.Timer;
 
 class GamePanel extends JPanel implements KeyListener{
+
+
     private boolean []keys;
     private boolean allowMove = true;
     private Frogger mainFrame;
@@ -26,6 +28,9 @@ class GamePanel extends JPanel implements KeyListener{
     private int lives = 5;
     private boolean pos = true;
     private boolean freeMove = true;
+
+
+
     private ArrayList<Image> carPics = new ArrayList<Image>();
 
     MovingItems truck, car, car2, car3, car4, log, log2, log3, turtle, turtle2, snake, pFrog;
@@ -33,6 +38,8 @@ class GamePanel extends JPanel implements KeyListener{
     Image back, frog, pFrogPic, pic, logPic, bLogPic, turtlePic, snakePic, lifePic, winPic, losePic;
 
     LinkedList<MovingItems> moveList;
+
+
 
 //====================================constructor=================================================
 
@@ -437,10 +444,14 @@ class GamePanel extends JPanel implements KeyListener{
          if(points == 500)
          {
              g.drawImage(winPic, 0, 100, null);
+             //drawGameEndScreen(g);
          }
          if(lives<1||timerLength==0)
          {
             g.drawImage(losePic, 0, 100, null);
+            losePic.setAccelerationPriority(1);
+            //drawGameEndScreen(g);
+
          }
 
         //System.out.println(player.getX()+" "+player.getY());
@@ -473,6 +484,17 @@ class GamePanel extends JPanel implements KeyListener{
            player.draw(g);
         }
     }
+    /*private void drawGameEndScreen(Graphics g) {
+
+        // draw the buttons
+        g.drawImage(restartButton.getImage(), restartButton.getX(), restartButton.getY(), this);
+        g.drawImage(menuButton.getImage(), menuButton.getX(), menuButton.getY(), this);
+
+        // Draw the Final score for the game
+        g.setFont(scoreFont);
+        g.setColor(Color.WHITE);
+        g.drawString("Final Score: " + ponits, 3, 25);
+    }*/
 }
 
 

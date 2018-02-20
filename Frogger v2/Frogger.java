@@ -44,6 +44,8 @@ public class Frogger extends JFrame implements ActionListener
 
         setResizable(false);
 
+
+
     }
 
     public void actionPerformed(ActionEvent evt){
