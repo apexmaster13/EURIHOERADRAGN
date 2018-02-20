@@ -464,18 +464,15 @@ class GamePanel extends JPanel implements KeyListener{
          if(lives<1||timerLength==0)
          {
             g.drawImage(losePic, 0, 100, null);
+            freeMove = false;
 
-
-            JButton restartButton = new JButton();
+           /* JButton restartButton = new JButton();
             restartButton.setBackground(new Color(255,255,255));
            // restartButton.setOpaque(false);
             restartButton.setSize(100,30);
             restartButton.setLocation(190,270);
-
-
-
-
-         }
+        */
+        }
 
         //System.out.println(player.getX()+" "+player.getY());
 
