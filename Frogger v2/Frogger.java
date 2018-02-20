@@ -21,12 +21,17 @@ public class Frogger extends JFrame implements ActionListener
         MyMenu menu;
         GamePanel game = new GamePanel(this);
 
+
         public Frogger() {
         super("Frogger");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(466, 553);
         add(game);
         myTimer = new Timer(10, this); // trigger every 10 ms
+
+
+
+
 
         new MyMenu(this);
 

@@ -7,6 +7,9 @@ import java.util.*;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.Timer;
+import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 class GamePanel extends JPanel implements KeyListener{
 
@@ -39,7 +42,7 @@ class GamePanel extends JPanel implements KeyListener{
 
     LinkedList<MovingItems> moveList;
 
-
+   // JButton restartButton = new JButton();
 
 //====================================constructor=================================================
 
@@ -93,6 +96,17 @@ class GamePanel extends JPanel implements KeyListener{
         bigLogSpawner.start();
         aniTimer.start();
         updateTimer.start();
+
+        /**JLayeredPane gOPage=new JLayeredPane();
+
+
+        restartButton.setBackground(new Color(255,255,255));
+        restartButton.setOpaque(false);
+        restartButton.setSize(100,30);
+        restartButton.setLocation(190,270);
+        gOPage.add(restartButton,2); */
+
+
 
     }
 
@@ -431,6 +445,7 @@ class GamePanel extends JPanel implements KeyListener{
 
 //=============================drawing=====================================
 
+
     public void paintComponent(Graphics g)
     {
         g.drawImage(back,0,0,this);
@@ -444,13 +459,21 @@ class GamePanel extends JPanel implements KeyListener{
          if(points == 500)
          {
              g.drawImage(winPic, 0, 100, null);
-             //drawGameEndScreen(g);
+
          }
          if(lives<1||timerLength==0)
          {
             g.drawImage(losePic, 0, 100, null);
-            losePic.setAccelerationPriority(1);
-            //drawGameEndScreen(g);
+
+
+            JButton restartButton = new JButton();
+            restartButton.setBackground(new Color(255,255,255));
+           // restartButton.setOpaque(false);
+            restartButton.setSize(100,30);
+            restartButton.setLocation(190,270);
+
+
+
 
          }
 
@@ -484,17 +507,8 @@ class GamePanel extends JPanel implements KeyListener{
            player.draw(g);
         }
     }
-    /*private void drawGameEndScreen(Graphics g) {
 
-        // draw the buttons
-        g.drawImage(restartButton.getImage(), restartButton.getX(), restartButton.getY(), this);
-        g.drawImage(menuButton.getImage(), menuButton.getX(), menuButton.getY(), this);
 
-        // Draw the Final score for the game
-        g.setFont(scoreFont);
-        g.setColor(Color.WHITE);
-        g.drawString("Final Score: " + ponits, 3, 25);
-    }*/
 }
 
 
