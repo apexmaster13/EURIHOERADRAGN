@@ -1,6 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
+// Class to control the player
 public class Frog
 {
 
@@ -16,53 +17,30 @@ public class Frog
     private final int RIGHT = 2;
     private final int LEFT = 3;
 
+    //used for checkcollisions
     public Rectangle getRect()
     {
         frogRect = new Rectangle(x,y, pic.getWidth(null), pic.getHeight(null));
         return frogRect;
     }
-
+    //Setting Picture
     public void setPic(Image p)
     {
         pic = p;
     }
-
+    // Set Direction
     public void setDir(int d)
     {
         dir = d;
     }
 
-    public int getDir()
-    {
-        return dir;
-    }
-
+    //start position
     public void update()
     {
         x = 298;
         y = 460;
     }
-
-    public int getX()
-    {
-        return x;
-    }
-
-    public int getHeight()
-    {
-        return height;
-    }
-
-    public int getWidth()
-    {
-        return width;
-    }
-
-     public int getY()
-     {
-        return y;
-    }
-
+    //Change position
     public void moveX(int x)
     {
         this.x += x;
@@ -73,6 +51,7 @@ public class Frog
         this.y += y;
     }
 
+    //
     public void draw(Graphics g)
     {
         if(dir == UP){
@@ -96,6 +75,31 @@ public class Frog
         if(pic!= null){
          //g.drawRect(x, y, pic.getWidth(null), pic.getHeight(null));
         }
+    }
+   //-----------------------------getter methods----------------------------------------------
+
+    public int getX()
+    {
+        return x;
+    }
+
+    public int getHeight()
+    {
+        return height;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getY()
+    {
+        return y;
+    }
+    public int getDir()
+    {
+        return dir;
     }
 
 }

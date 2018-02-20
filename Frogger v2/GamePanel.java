@@ -11,6 +11,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 class GamePanel extends JPanel implements KeyListener{
 
 
@@ -40,14 +41,15 @@ class GamePanel extends JPanel implements KeyListener{
 
     Image back, frog, pFrogPic, pic, logPic, bLogPic, turtlePic, snakePic, lifePic, winPic, losePic;
 
-    LinkedList<MovingItems> moveList;
+    LinkedList<MovingItems> moveList; // Linkedlist for all the main game objects
 
-   // JButton restartButton = new JButton();
 
 //====================================constructor=================================================
 
     public GamePanel(Frogger m)
     {
+
+        //=================================Setting Images=========================================
         back = new ImageIcon("images/back.jpg").getImage();
         back = back.getScaledInstance(back.getWidth(null)*2,back.getHeight(null)*2, Image.SCALE_SMOOTH);
         for(int i=0; i<5; i++){
@@ -75,6 +77,8 @@ class GamePanel extends JPanel implements KeyListener{
         frog = frog.getScaledInstance(24, 18, Image.SCALE_SMOOTH);
         player.setPic(frog);
 
+        //=========================================================================================
+
         keys = new boolean[KeyEvent.KEY_LAST+1];
         moveList = new LinkedList<MovingItems>();
 
@@ -89,7 +93,7 @@ class GamePanel extends JPanel implements KeyListener{
             pFrog = new MovingItems(22+i*96, 70, 0, 0, "point", pFrogPic);
             moveList.add(pFrog);
         }
-
+        //====================Timers========================
         carSpawner.start();
         waterSpawner.start();
         snakeSpawner.start();
@@ -97,21 +101,11 @@ class GamePanel extends JPanel implements KeyListener{
         aniTimer.start();
         updateTimer.start();
 
-        /**JLayeredPane gOPage=new JLayeredPane();
-
-
-        restartButton.setBackground(new Color(255,255,255));
-        restartButton.setOpaque(false);
-        restartButton.setSize(100,30);
-        restartButton.setLocation(190,270);
-        gOPage.add(restartButton,2); */
-
-
 
     }
 
 //==================================spawning=============================================
-
+    //CARS-------------------------------------------------------------------------------
     Timer carSpawner = new Timer(3000, new ActionListener() {
         public void actionPerformed(ActionEvent e) {
             rng = rand.nextInt(90);
@@ -132,11 +126,11 @@ class GamePanel extends JPanel implements KeyListener{
             moveList.add(car4);
         }
     });
-
+    //WATER-----------------------------------------------------------------------------
     Timer waterSpawner = new Timer(6000, new ActionListener() {
         public void actionPerformed(ActionEvent e) {
             rng = rand.nextInt(50);
-
+            //TURTLE
             if(rand.nextInt(3)+1 == 1){
                 for(int i=0; i<rand.nextInt(4)+2; i++){
                     turtle = new MovingItems(465+i*26, 236, -2, 0, "turtle", turtlePic);
@@ -149,7 +143,7 @@ class GamePanel extends JPanel implements KeyListener{
                     moveList.add(turtle);
                 }
             }
-
+            //LOG
             rng = rand.nextInt(50);
             log = new MovingItems(-30-rng, 203, 2, 0, "log", logPic);
             moveList.add(log);
@@ -159,6 +153,7 @@ class GamePanel extends JPanel implements KeyListener{
             moveList.add(log2);*/
 
             rng = rand.nextInt(90);
+            //TURTLE-2
             if(rand.nextInt(3)+1 == 1){
                 for(int i=0; i<rand.nextInt(4)+2; i++){
                     turtle2 = new MovingItems(465+i*26, 136, -2, 0, "turtle", turtlePic);
@@ -177,7 +172,7 @@ class GamePanel extends JPanel implements KeyListener{
             moveList.add(log3);
         }
     });
-
+    //SNAKE============================================================
     Timer snakeSpawner = new Timer(20000, new ActionListener() {
         public void actionPerformed(ActionEvent e) {
             snake = new MovingItems(0, 268, 2, 0, "snake", snakePic);
@@ -369,22 +364,19 @@ class GamePanel extends JPanel implements KeyListener{
 
     public boolean checkCollision(MovingItems o)
     {
-        //System.out.println(o.getRect().intersects(player.getRect()));
-        if(player.getY()<250){
+        //COLLISIONS IN WATER(logs & turtles)
+        if(player.getY()<250)
+        {
             if(o.getRect().intersects(player.getRect()) == false && o.getType().equals("log") && moveCounter == 0 || o.getRect().intersects(player.getRect()) == false && o.getType().equals("turtle1") && moveCounter == 0 || o.getRect().intersects(player.getRect()) == false && o.getType().equals("turtle") && tCounter<4 && moveCounter == 0)
             {
-                //player.update();
-                //freeMove = false;
-                //System.out.println(o.getRect().intersects(player.getRect()));
                 return true;
             }
+
             if(o.getRect().intersects(player.getRect()) == true && o.getType().equals("log") || o.getRect().intersects(player.getRect()) == true && o.getType().equals("turtle1") || o.getRect().intersects(player.getRect()) == true && o.getType().equals("turtle") && tCounter<4)
             {
-                //System.out.println("hit");
+
                 if(freeMove){
                     objectSpeed = o.getSpeedX();
-
-                    //player.moveX(o.getSpeedX());
                 }
                 return true;
             }
@@ -405,6 +397,7 @@ class GamePanel extends JPanel implements KeyListener{
 
     public void move()
     {
+        //keyboard input
         if(!moveTimer.isRunning()){
             if(allowMove && freeMove){
                 if(keys[KeyEvent.VK_RIGHT] && player.getX()!= 426){
@@ -430,7 +423,7 @@ class GamePanel extends JPanel implements KeyListener{
         }
     }
 
-    public void keyTyped(KeyEvent e){}
+    public void keyTyped(KeyEvent e){}//auto generated
 
     public void keyPressed(KeyEvent e)
     {
@@ -452,9 +445,10 @@ class GamePanel extends JPanel implements KeyListener{
         waterRect = new Rectangle(6, 100, 224*2, 164);
         g.drawRect(6, 100, 224*2, 82*2);
 
-         for(int i=1; i<=lives; i++){
+         for(int i=1; i<=lives; i++)
+         {
             g.drawImage(lifePic, 8+i*16, 490, null);
-        }
+         }
 
          if(points == 500)
          {
@@ -475,17 +469,18 @@ class GamePanel extends JPanel implements KeyListener{
         }
 
         //System.out.println(player.getX()+" "+player.getY());
-
+        //side borders=====================================================================
         if(player.getX()<-10 || player.getX()>440)
         {
             freeMove = false;
         }
+        //timer display =====================================================================
         if(timerLength>0){
             g.setColor(Color.green);
             //g.fillRect(boxx,boxy,40,40);
             g.fillRect(150, 504, timerLength, 16);
         }
-
+        //MovingItems display ===================================================================
         for(MovingItems o : moveList)
         {
             o.draw(g, this);
@@ -499,6 +494,7 @@ class GamePanel extends JPanel implements KeyListener{
                 moveList.remove(o);
             }
         }
+        // Displays Character if there are lifes and time left
         if(lives>=1||timerLength<0)
         {
            player.draw(g);

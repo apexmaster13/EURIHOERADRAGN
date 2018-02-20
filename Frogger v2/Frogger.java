@@ -2,11 +2,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.Timer;
-//import javax.swing.ImageIcon;
-//import javax.swing.JFrame;
-//import javax.swing.JPanel;
-//import java.awt.Graphics;
-//import java.awt.Image;
 
 import java.io.*;
 import javax.sound.sampled.AudioInputStream;
@@ -17,21 +12,18 @@ import sun.audio.*;
 
 public class Frogger extends JFrame implements ActionListener
 {
-        Timer myTimer;
-        MyMenu menu;
-        GamePanel game = new GamePanel(this);
+    Timer myTimer;
+    MyMenu menu; //Menu
+    // create the gamepanel
+    GamePanel game = new GamePanel(this);
 
 
-        public Frogger() {
+    public Frogger() {
         super("Frogger");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(466, 553);
-        add(game);
+        add(game);  //add the gamepanel to the window
         myTimer = new Timer(10, this); // trigger every 10 ms
-
-
-
-
 
         new MyMenu(this);
 
@@ -46,11 +38,7 @@ public class Frogger extends JFrame implements ActionListener
             System.err.println(e.getMessage());
         }*/
 
-
         setResizable(false);
-
-
-
     }
 
     public void actionPerformed(ActionEvent evt){
@@ -60,9 +48,12 @@ public class Frogger extends JFrame implements ActionListener
 
     public void start()
     {
+        // set window visible
         myTimer.start();
         setVisible(true);
     }
+
+    // main function. Create new Window which starts the program
     public static void main(String[] args)
     {
         Frogger frame = new Frogger();
