@@ -1,3 +1,5 @@
+//Simple class that deals with returning and setting MovingItem object values. Is also used to draw and move the objects.
+
 import java.awt.*;
 import javax.swing.*;
 import java.util.*;
@@ -36,7 +38,7 @@ public class MovingItems
         y = ypos;
     }
 
-    public void update()
+    public void update() //makes the moving items move horizonally according to their speed
     {
         x += dx;
     }
@@ -89,6 +91,6 @@ public class MovingItems
         dw = c.getWidth();
 
         g.drawImage(pic, x, y, c);
-        g.drawRect(x, y, pic.getWidth(null), pic.getHeight(null));
+        //g.drawRect(x, y, pic.getWidth(null), pic.getHeight(null));
     }
 }
