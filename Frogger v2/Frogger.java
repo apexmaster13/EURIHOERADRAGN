@@ -56,10 +56,6 @@ public class Frogger extends JFrame implements ActionListener
         myTimer.start();
         setVisible(true);
     }
-
-
-
-
     public static void main(String[] args)
     {
         Frogger frame = new Frogger();

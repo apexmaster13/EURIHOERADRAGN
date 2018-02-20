@@ -468,8 +468,10 @@ class GamePanel extends JPanel implements KeyListener{
                 moveList.remove(o);
             }
         }
-
-        player.draw(g);
+        if(lives>=1||timerLength<0)
+        {
+           player.draw(g);
+        }
     }
 }
 
