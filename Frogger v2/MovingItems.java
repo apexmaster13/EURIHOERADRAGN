@@ -14,7 +14,7 @@ public class MovingItems
     MovingItems(int x, int y, int dx, int dy, String type, Image pic)
     {
         this.x = x;
-        srtX = x;
+        //srtX = x;
         this.y = y;
         this.dx = dx;
         this.dy = dy;
@@ -39,46 +39,6 @@ public class MovingItems
     public void update()
     {
         x += dx;
-        /*if(x>-30 && x<480){
-            x += dx;
-        }
-        else{
-            x = srtX;
-        }
-        /*
-        rng = rand.nextInt(3)+1;
-        
-        if(srtX == 0 && x<=459){
-            x += dx;
-        }
-        
-        else if(srtX == 459 && x>=-10){
-            x += dx;
-        }
-        
-        else if(srtX == 459 && x<-10){
-            rng = rand.nextInt(3)+1;
-            if(rng == 1){
-                x = srtX;
-            }
-            else if(rng == 2){
-                x = srtX + 50;
-            }
-            else{
-                x = srtX + 100;
-            }
-        }
-        else if(srtX == 0 && x>459){
-            if(rng == 1){
-                x = srtX;
-            }
-            else if(rng == 2){
-                x = srtX - 50;
-            }
-            else{
-                x = srtX - 100;
-            }
-        }*/
     }
 
      public void setPic(Image p)
@@ -117,19 +77,18 @@ public class MovingItems
     public int getSpeedX(){
         return dx;
     }
-    
+
     public String getType(){
         return type;
     }
+    //--------------------------------------------------------------------------------------------------------
 
     public void draw(Graphics g, Component c)
     {
         dh = c.getHeight();
         dw = c.getWidth();
-        //g.drawImage(pic , x, y, null);
-        //g.drawImage(pic.getImage(), x, y%c.getHeight(), width, height, c);
+
         g.drawImage(pic, x, y, c);
-        //g.drawRect(x, y%c.getHeight(), width, height);
         g.drawRect(x, y, pic.getWidth(null), pic.getHeight(null));
     }
 }
