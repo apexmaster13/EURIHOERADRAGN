@@ -10,7 +10,8 @@ import javax.swing.Timer;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
-
+import java.io.*;
+import sun.audio.*;
 
 class GamePanel extends JPanel implements KeyListener{
 
@@ -93,6 +94,7 @@ class GamePanel extends JPanel implements KeyListener{
             pFrog = new MovingItems(22+i*96, 70, 0, 0, "point", pFrogPic);
             moveList.add(pFrog);
         }
+        playSound("sounds/coin.wav");
         //====================Timers========================
         carSpawner.start();
         waterSpawner.start();
@@ -103,7 +105,20 @@ class GamePanel extends JPanel implements KeyListener{
 
 
     }
-
+    
+//===================================sound================================================
+    
+    public void playSound(String path){
+        try{
+            InputStream in = new FileInputStream(path);
+            AudioStream audioStream = new AudioStream(in);
+            AudioPlayer.player.start(audioStream);
+        }
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        } 
+    }
+    
 //==================================spawning=============================================
     //CARS-------------------------------------------------------------------------------
     Timer carSpawner = new Timer(3000, new ActionListener() {
@@ -316,11 +331,17 @@ class GamePanel extends JPanel implements KeyListener{
             if(freeMove == false){
                 dCounter+=1;
                 if(player.getY()<250){
+                    if(dCounter == 1){
+                        playSound("sounds/drown.wav");
+                    }
                     frog = new ImageIcon("images/hit/hit"+dCounter+".png").getImage();
                     frog = frog.getScaledInstance(frog.getWidth(null)*2, frog.getHeight(null)*2, Image.SCALE_SMOOTH);
                     player.setPic(frog);
                 }
                 else{
+                    if(dCounter == 1){
+                        playSound("sounds/hit.wav");
+                    }
                     frog = new ImageIcon("images/drown/drown"+dCounter+".png").getImage();
                     frog = frog.getScaledInstance(frog.getWidth(null)*2, frog.getHeight(null)*2, Image.SCALE_SMOOTH);
                     player.setPic(frog);
@@ -403,20 +424,24 @@ class GamePanel extends JPanel implements KeyListener{
                 if(keys[KeyEvent.VK_RIGHT] && player.getX()!= 426){
                     player.setDir(RIGHT);
                     moveTimer.start();
+                    playSound("sounds/hop.wav");
                 }
                 if(keys[KeyEvent.VK_LEFT] && player.getX() != 10){
                     player.setDir(LEFT);
                     moveTimer.start();
+                    playSound("sounds/hop.wav");
                 }
                 // && player.getY() != 108
                 if(keys[KeyEvent.VK_UP]){
                     player.setDir(UP);
                     moveTimer.start();
+                    playSound("sounds/hop.wav");
                 }
 
                 if(keys[KeyEvent.VK_DOWN] && player.getY()!=460){
                     player.setDir(DOWN);
                     moveTimer.start();
+                    playSound("sounds/hop.wav");
                 }
                 allowMove = false;
             }
